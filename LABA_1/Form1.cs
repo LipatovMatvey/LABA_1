@@ -118,5 +118,124 @@ namespace LABA_1
             txtDisplayInfo.Clear();
             txtDisplayInfo.AppendText(currentShop.ToString());
         }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnShowHex_Click(object sender, EventArgs e)
+        {
+            txtDisplayInfo.Clear();
+        }
+
+        private void btnShowField_Click(object sender, EventArgs e)
+        {
+            if (currentShop == null)
+            {
+                ShowNativeMessageBox("Ошибка", "Сначала создайте объект! Поле не определено", 16);
+                return;
+            }
+            string selectedField = objectFields.SelectedItem as string;
+            switch (selectedField)
+            {
+                case "name":
+                    txtDisplayInfo.Text = currentShop.name.ToString();
+                    break;
+                case "address":
+                    txtDisplayInfo.Text = currentShop.address.ToString();
+                    break;
+                case "purchaseCount":
+                    txtDisplayInfo.Text = currentShop.purchaseCount.ToString();
+                    break;
+                case "productCount":
+                    txtDisplayInfo.Text = currentShop.productCount.ToString();
+                    break;
+                case "averageCheck":
+                    txtDisplayInfo.Text = currentShop.averageCheck.ToString();
+                    break;
+                case "rating":
+                    txtDisplayInfo.Text = currentShop.rating.ToString();
+                    break;
+                case "isActive":
+                    txtDisplayInfo.Text = currentShop.isActive.ToString();
+                    break;
+                default:
+                    txtDisplayInfo.Text = "Выберите поле для отображения";
+                    break;
+            }
+
+            if (txtDisplayInfo.Text != "Выберите поле для отображения") 
+            {
+                ShowNativeMessageBox("Успех", "Значение поля отображено!", 0x40);
+            }
+        }
+
+        private void btnClear_Click_1(object sender, EventArgs e)
+        {
+            txtDisplayInfo.Clear();
+        }
+
+        private void btnShowInfo_Click(object sender, EventArgs e)
+        {
+            DisplayCurrentShopInfo();
+        }
+
+        private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnModifyFields_Click(object sender, EventArgs e)
+        {
+            if (currentShop == null)
+            {
+                ShowNativeMessageBox("Ошибка", "Сначала создайте объект! Поле не определено", 16);
+                return;
+            }
+
+            string selectedField = objectFields.SelectedItem as string;
+            string newValue = newFieldValue.Text;
+
+            if (newValue == "")
+            {
+                ShowNativeMessageBox("Ошибка", "Значение не может быть пустым", 16);
+                return;
+            }
+
+            switch (selectedField)
+            {
+                case "name":
+                    currentShop.name = newValue;
+                    break;
+                case "address":
+                    currentShop.address = newValue;
+                    break;
+                case "purchaseCount":
+                    currentShop.purchaseCount = int.Parse(newValue);
+                    break;
+                case "productCount":
+                    currentShop.productCount = int.Parse(newValue);
+                    break;
+                case "averageCheck":
+                    currentShop.averageCheck = double.Parse(newValue);
+                    break;
+                case "rating":
+                    currentShop.rating = double.Parse(newValue);
+                    break;
+                case "isActive":
+                    currentShop.isActive = Convert.ToBoolean(newValue);
+                    break;
+                default:
+                    txtDisplayInfo.Text = "Выберите поле для изменения";
+                    break;
+            }
+
+            if (txtDisplayInfo.Text != "Выберите поле для отображения")
+            {
+                DisplayCurrentShopInfo();
+                ShowNativeMessageBox("Успех", "Значение поля изменено!", 0x40);               
+            }
+        }
     }
 }
