@@ -46,8 +46,8 @@ namespace LABA_1
         /// </summary>
         public InternetShop()
         {
-            shopName = "Неизвестный магазин";
-            shopAddress = "Адрес не указан";
+            shopName = "NoName";
+            shopAddress = "NoAddress";
             purchaseCount = 0;
             productCount = 0;
             averageCheck = 0.0;
@@ -62,7 +62,7 @@ namespace LABA_1
         public InternetShop(string name)
         {
             shopName = name;
-            shopAddress = "Адрес не указан";
+            shopAddress = "NoAddress";
             purchaseCount = 0;
             productCount = 0;
             averageCheck = 0.0;
@@ -87,7 +87,7 @@ namespace LABA_1
         }
 
         /// <summary>
-        /// 
+        /// Конструктор с параметрами
         /// </summary>
         /// <param name="name">Название магазина</param>
         /// <param name="address">Адрес магазина</param>
@@ -107,5 +107,30 @@ namespace LABA_1
             rating = shopRating;
             isActive = active;
         }
+
+        /// <summary>
+        /// Переопределение метода ToString()
+        /// </summary>
+        /// <returns></returns>
+        public override string ToString()
+        {
+            return $"Интернет-магазин: {shopName}\r\n" +
+                   $"Адрес: {shopAddress}\r\n" +
+                   $"Количество покупок: {purchaseCount}\r\n" +
+                   $"Количество товаров: {productCount}\r\n" +
+                   $"Средний чек: {averageCheck:C}\r\n" +
+                   $"Рейтинг: {rating:F1}\r\n" +
+                   $"Статус: {(isActive ? "Активен" : "Неактивен")}"; ;
+        }
+
+        /// <summary>
+        /// Метод для получения шестнадцатеричного представления количества товаров
+        /// </summary>
+        /// <returns></returns>
+        public string GetProductCountHex()
+        {
+            return $"Количество товаров (16-ричное): 0x{productCount:X}";
+        }
+
     }
 }
