@@ -75,6 +75,7 @@
             // 
             // label1
             // 
+            label1.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             label1.AutoSize = true;
             label1.BackColor = SystemColors.Highlight;
             label1.Font = new Font("Times New Roman", 12F, FontStyle.Bold);
@@ -87,10 +88,10 @@
             // 
             // panel1
             // 
+            panel1.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             panel1.BackColor = SystemColors.Highlight;
             panel1.Controls.Add(label2);
             panel1.Controls.Add(label1);
-            panel1.Dock = DockStyle.Top;
             panel1.Location = new Point(0, 0);
             panel1.Name = "panel1";
             panel1.Size = new Size(1013, 100);
@@ -98,6 +99,7 @@
             // 
             // label2
             // 
+            label2.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             label2.AutoSize = true;
             label2.Font = new Font("Times New Roman", 12F, FontStyle.Bold);
             label2.ForeColor = SystemColors.ButtonFace;
@@ -246,7 +248,6 @@
             // 
             // comboBox1
             // 
-            comboBox1.DropDownStyle = ComboBoxStyle.DropDownList;
             comboBox1.Font = new Font("Times New Roman", 10F);
             comboBox1.FormattingEnabled = true;
             comboBox1.Items.AddRange(new object[] { "Активен", "Неактивен" });
@@ -254,9 +255,11 @@
             comboBox1.Name = "comboBox1";
             comboBox1.Size = new Size(159, 27);
             comboBox1.TabIndex = 16;
+            comboBox1.Text = "Статус";
             // 
             // lblObjectCount
             // 
+            lblObjectCount.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             lblObjectCount.AutoSize = true;
             lblObjectCount.Font = new Font("Times New Roman", 11F, FontStyle.Bold);
             lblObjectCount.ForeColor = Color.Blue;
@@ -268,6 +271,7 @@
             // 
             // groupBoxDisplay
             // 
+            groupBoxDisplay.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             groupBoxDisplay.Controls.Add(txtDisplayInfo);
             groupBoxDisplay.Font = new Font("Times New Roman", 10F, FontStyle.Bold);
             groupBoxDisplay.Location = new Point(400, 140);
@@ -279,6 +283,7 @@
             // 
             // txtDisplayInfo
             // 
+            txtDisplayInfo.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             txtDisplayInfo.Font = new Font("Consolas", 10F);
             txtDisplayInfo.Location = new Point(15, 25);
             txtDisplayInfo.Multiline = true;
@@ -290,6 +295,7 @@
             // 
             // btnShowInfo
             // 
+            btnShowInfo.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             btnShowInfo.Font = new Font("Times New Roman", 10F);
             btnShowInfo.Location = new Point(400, 500);
             btnShowInfo.Name = "btnShowInfo";
@@ -300,6 +306,7 @@
             // 
             // btnShowField
             // 
+            btnShowField.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             btnShowField.Font = new Font("Times New Roman", 10F);
             btnShowField.Location = new Point(553, 500);
             btnShowField.Name = "btnShowField";
@@ -310,6 +317,7 @@
             // 
             // btnModifyFields
             // 
+            btnModifyFields.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             btnModifyFields.Font = new Font("Times New Roman", 10F);
             btnModifyFields.Location = new Point(553, 551);
             btnModifyFields.Name = "btnModifyFields";
@@ -320,6 +328,7 @@
             // 
             // btnShowHex
             // 
+            btnShowHex.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             btnShowHex.Font = new Font("Times New Roman", 10F);
             btnShowHex.Location = new Point(400, 551);
             btnShowHex.Name = "btnShowHex";
@@ -330,6 +339,7 @@
             // 
             // btnClear
             // 
+            btnClear.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             btnClear.Font = new Font("Times New Roman", 10F);
             btnClear.Location = new Point(400, 597);
             btnClear.Name = "btnClear";
@@ -340,6 +350,7 @@
             // 
             // groupBoxInput
             // 
+            groupBoxInput.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             groupBoxInput.Controls.Add(label9);
             groupBoxInput.Controls.Add(label3);
             groupBoxInput.Controls.Add(comboBox1);
@@ -364,6 +375,7 @@
             // 
             // groupBoxStatus
             // 
+            groupBoxStatus.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             groupBoxStatus.Controls.Add(button1);
             groupBoxStatus.Font = new Font("Times New Roman", 10F, FontStyle.Bold);
             groupBoxStatus.Location = new Point(21, 500);
@@ -375,6 +387,7 @@
             // 
             // btnBack
             // 
+            btnBack.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             btnBack.BackColor = Color.White;
             btnBack.Font = new Font("Times New Roman", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 204);
             btnBack.ForeColor = Color.Black;
@@ -414,6 +427,7 @@
             // 
             // newFieldValue
             // 
+            newFieldValue.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             newFieldValue.Location = new Point(886, 551);
             newFieldValue.Margin = new Padding(3, 4, 3, 4);
             newFieldValue.Name = "newFieldValue";
@@ -422,6 +436,7 @@
             // 
             // label11
             // 
+            label11.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             label11.AutoSize = true;
             label11.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 204);
             label11.Location = new Point(725, 555);
