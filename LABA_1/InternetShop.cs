@@ -9,45 +9,45 @@ namespace LABA_1
         /// <summary>
         /// Наименование магазина
         /// </summary>
-        private string shopName {  get; set; }
+        public string name {  get; set; }
 
         /// <summary>
         /// Адрес магазина
         /// </summary>
-        private string shopAddress { get; set; }
+        public string address { get; set; }
 
         /// <summary>
         /// Число покупок
         /// </summary>
-        private int purchaseCount { get; set; }
+        public int purchaseCount { get; set; }
 
         /// <summary>
         /// Количество товаров
         /// </summary>
-        private int productCount { get; set; }
+        public int productCount { get; set; }
 
         /// <summary>
         /// Средний чек
         /// </summary>
-        private double averageCheck { get; set; }
+        public double averageCheck { get; set; }
 
         /// <summary>
         /// Рейтинг магазина
         /// </summary>
-        private double rating { get; set; }
+        public double rating { get; set; }
 
         /// <summary>
         /// Активен ли магазин
         /// </summary>
-        private bool isActive { get; set; }
+        public bool isActive { get; set; }
 
         /// <summary>
         /// Конструктор по умолчанию
         /// </summary>
         public InternetShop()
         {
-            shopName = "NoName";
-            shopAddress = "NoAddress";
+            name = "NoName";
+            address = "NoAddress";
             purchaseCount = 0;
             productCount = 0;
             averageCheck = 0.0;
@@ -61,8 +61,8 @@ namespace LABA_1
         /// <param name="name">Название магазина</param>
         public InternetShop(string name)
         {
-            shopName = name;
-            shopAddress = "NoAddress";
+            this.name = name;
+            address = "NoAddress";
             purchaseCount = 0;
             productCount = 0;
             averageCheck = 0.0;
@@ -77,8 +77,8 @@ namespace LABA_1
         /// <param name="address">Адрес магазина</param>
         public InternetShop(string name, string address)
         {
-            shopName = name;
-            shopAddress = address;
+            this.name = name;
+            this.address = address;
             purchaseCount = 0;
             productCount = 0;
             averageCheck = 0.0;
@@ -99,8 +99,8 @@ namespace LABA_1
         public InternetShop(string name, string address, int purchases, int products,
                            double avgCheck, double shopRating, bool active)
         {
-            shopName = name;
-            shopAddress = address;
+            this.name = name;
+            this.address = address;
             purchaseCount = purchases;
             productCount = products;
             averageCheck = avgCheck;
@@ -114,8 +114,8 @@ namespace LABA_1
         /// <returns></returns>
         public override string ToString()
         {
-            return $"Интернет-магазин: {shopName}\r\n" +
-                   $"Адрес: {shopAddress}\r\n" +
+            return $"Интернет-магазин: {name}\r\n" +
+                   $"Адрес: {address}\r\n" +
                    $"Количество покупок: {purchaseCount}\r\n" +
                    $"Количество товаров: {productCount}\r\n" +
                    $"Средний чек: {averageCheck:C}\r\n" +
