@@ -54,9 +54,8 @@ namespace LABA_1
                 double avgCheck = (double)numericUpDown3.Value;
                 double rating = (double)numericUpDown4.Value;
                 bool active = comboBox1.SelectedIndex == 0;
-                if (purchases == 0 && products == 0 && avgCheck == 0 && rating == 0 && 
+                if (purchases == 0 && products == 0 && avgCheck == 0 && rating == 0 &&
                     active == false && string.IsNullOrEmpty(name) && string.IsNullOrEmpty(address))
-
                 {
                     currentShop = new InternetShop();
                     ShowNativeMessageBox("Успех", $"Объект создан с конструктором по умолчанию", 0);
@@ -70,7 +69,7 @@ namespace LABA_1
                 else if (purchases == 0 && products == 0 && avgCheck == 0 && rating == 0 && active == false)
                 {
                     currentShop = new InternetShop(name, address);
-                    ShowNativeMessageBox("Успех", $"Объект создан с конструктором с двумя параметром", 0);
+                    ShowNativeMessageBox("Успех", $"Объект создан с конструктором с двумя параметрами", 0);
                 }
                 else
                 {
@@ -79,6 +78,7 @@ namespace LABA_1
                 }
                 shopsList.Add(currentShop);
                 UpdateObjectCount();
+                UpdateObjectsList();
                 DisplayCurrentShopInfo();
             }
             catch (Exception ex)
@@ -90,9 +90,9 @@ namespace LABA_1
         /// <summary>
         /// Обертка для вызова нативного MessageBox
         /// </summary>
-        /// <param name="caption">Заголовок окна сообщения</param>
-        /// <param name="text">Текст сообщения</param>
-        /// <param name="type">Тип сообщения</param>
+        /// <param name="caption"></param>
+        /// <param name="text"></param>
+        /// <param name="type"></param>
         /// <returns></returns>
         private int ShowNativeMessageBox(string caption, string text, uint type)
         {
@@ -105,6 +105,36 @@ namespace LABA_1
         private void UpdateObjectCount()
         {
             lblObjectCount.Text = $"Создано объектов: {shopsList.Count}";
+        }
+
+        /// <summary>
+        /// Обновляет список объектов в комбобоксе
+        /// </summary>
+        private void UpdateObjectsList()
+        {
+            cmbObjectsList.Items.Clear();
+            for (int i = 0; i < shopsList.Count; i++)
+            {
+                string displayName = $"Объект {i + 1}: {shopsList[i].name}";
+                if (shopsList[i] == currentShop)
+                {
+                    displayName += " (текущий)";
+                }
+                cmbObjectsList.Items.Add(displayName);
+            }
+            if (currentShop != null)
+            {
+                int currentIndex = shopsList.IndexOf(currentShop);
+                if (currentIndex >= 0)
+                {
+                    cmbObjectsList.SelectedIndex = currentIndex;
+                }
+                lblCurrentObject.Text = $"Текущий объект: {currentShop.name}";
+            }
+            else
+            {
+                lblCurrentObject.Text = "Текущий объект: не выбран";
+            }
         }
 
         /// <summary>
@@ -122,7 +152,7 @@ namespace LABA_1
         }
 
         /// <summary>
-        /// Обработчик кнопки очистки поля отображения информации
+        /// Обработчик кнопки 16-ричного вывода
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -151,6 +181,11 @@ namespace LABA_1
                 return;
             }
             string selectedField = objectFields.SelectedItem as string;
+            if (string.IsNullOrEmpty(selectedField))
+            {
+                ShowNativeMessageBox("Ошибка", "Выберите поле для отображения!", 16);
+                return;
+            }
             switch (selectedField)
             {
                 case "name":
@@ -166,10 +201,10 @@ namespace LABA_1
                     txtDisplayInfo.Text = currentShop.productCount.ToString();
                     break;
                 case "averageCheck":
-                    txtDisplayInfo.Text = currentShop.averageCheck.ToString();
+                    txtDisplayInfo.Text = currentShop.averageCheck.ToString("F2");
                     break;
                 case "rating":
-                    txtDisplayInfo.Text = currentShop.rating.ToString();
+                    txtDisplayInfo.Text = currentShop.rating.ToString("F1");
                     break;
                 case "isActive":
                     txtDisplayInfo.Text = currentShop.isActive.ToString();
@@ -178,10 +213,7 @@ namespace LABA_1
                     txtDisplayInfo.Text = "Выберите поле для отображения";
                     break;
             }
-            if (txtDisplayInfo.Text != "Выберите поле для отображения")
-            {
-                ShowNativeMessageBox("Успех", "Значение поля отображено!", 0x40);
-            }
+            ShowNativeMessageBox("Успех", "Значение поля отображено!", 0x40);
         }
 
         /// <summary>
@@ -217,6 +249,11 @@ namespace LABA_1
                 return;
             }
             string selectedField = objectFields.SelectedItem as string;
+            if (string.IsNullOrEmpty(selectedField))
+            {
+                ShowNativeMessageBox("Ошибка", "Выберите поле для изменения!", 16);
+                return;
+            }
             string newValue = newFieldValue.Text;
             if (newValue == "")
             {
@@ -277,21 +314,88 @@ namespace LABA_1
                     break;
                 case "isActive":
                     if (!newValue.Equals("да", StringComparison.OrdinalIgnoreCase) &&
-                        !newValue.Equals("нет", StringComparison.OrdinalIgnoreCase))
+                        !newValue.Equals("нет", StringComparison.OrdinalIgnoreCase) &&
+                        !newValue.Equals("true", StringComparison.OrdinalIgnoreCase) &&
+                        !newValue.Equals("false", StringComparison.OrdinalIgnoreCase))
                     {
-                        ShowNativeMessageBox("Ошибка", "Значение может быть \"да/нет\"", 16);
+                        ShowNativeMessageBox("Ошибка", "Значение может быть \"да/нет\" или \"true/false\"", 16);
                         return;
                     }
-                    currentShop.isActive = newValue.ToLower() == "да" ? true : false;
+                    if (newValue.Equals("да", StringComparison.OrdinalIgnoreCase) ||
+                        newValue.Equals("true", StringComparison.OrdinalIgnoreCase))
+                    {
+                        currentShop.isActive = true;
+                    }
+                    else
+                    {
+                        currentShop.isActive = false;
+                    }
                     break;
+
                 default:
                     txtDisplayInfo.Text = "Выберите поле для изменения";
                     break;
             }
-            if (txtDisplayInfo.Text != "Выберите поле для отображения")
+            DisplayCurrentShopInfo();
+            UpdateObjectsList();
+            ShowNativeMessageBox("Успех", "Значение поля изменено!", 0x40);
+            newFieldValue.Clear();
+        }
+
+        /// <summary>
+        /// Переключение на выбранный объект
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnSwitchToSelected_Click(object sender, EventArgs e)
+        {
+            if (cmbObjectsList.SelectedIndex >= 0 && cmbObjectsList.SelectedIndex < shopsList.Count)
             {
+                currentShop = shopsList[cmbObjectsList.SelectedIndex];
+                UpdateObjectsList();
                 DisplayCurrentShopInfo();
-                ShowNativeMessageBox("Успех", "Значение поля изменено!", 0x40);
+                ShowNativeMessageBox("Успех", $"Переключено на объект: {currentShop.name}", 0x40);
+            }
+            else
+            {
+                ShowNativeMessageBox("Ошибка", "Выберите объект из списка!", 16);
+            }
+        }
+
+        /// <summary>
+        /// Удаление выбранного объекта
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnDeleteObject_Click(object sender, EventArgs e)
+        {
+            if (cmbObjectsList.SelectedIndex >= 0 && cmbObjectsList.SelectedIndex < shopsList.Count)
+            {
+                int indexToDelete = cmbObjectsList.SelectedIndex;
+                string deletedName = shopsList[indexToDelete].name;
+                int result = ShowNativeMessageBox("Подтверждение",
+                    $"Удалить объект '{deletedName}'?", 4);
+                if (result == 6)
+                {
+                    shopsList.RemoveAt(indexToDelete);
+                    if (shopsList.Count == 0)
+                    {
+                        currentShop = null;
+                        txtDisplayInfo.Clear();
+                    }
+                    else if (currentShop != null && indexToDelete <= shopsList.IndexOf(currentShop))
+                    {
+                        currentShop = shopsList[0];
+                        DisplayCurrentShopInfo();
+                    }
+                    UpdateObjectCount();
+                    UpdateObjectsList();
+                    ShowNativeMessageBox("Успех", "Объект удален", 0x40);
+                }
+            }
+            else
+            {
+                ShowNativeMessageBox("Ошибка", "Выберите объект для удаления!", 16);
             }
         }
     }

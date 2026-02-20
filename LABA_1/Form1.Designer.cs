@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            components = new System.ComponentModel.Container();
             label1 = new Label();
             panel1 = new Panel();
             label2 = new Label();
@@ -58,12 +57,16 @@
             groupBoxInput = new GroupBox();
             groupBoxStatus = new GroupBox();
             btnBack = new Button();
-            contextMenuStrip1 = new ContextMenuStrip(components);
             objectFields = new ComboBox();
             label10 = new Label();
             newFieldValue = new TextBox();
             label11 = new Label();
             label12 = new Label();
+            groupBoxObjects = new GroupBox();
+            lblCurrentObject = new Label();
+            cmbObjectsList = new ComboBox();
+            btnSwitchToSelected = new Button();
+            btnDeleteObject = new Button();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)numericUpDown1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)numericUpDown2).BeginInit();
@@ -72,6 +75,7 @@
             groupBoxDisplay.SuspendLayout();
             groupBoxInput.SuspendLayout();
             groupBoxStatus.SuspendLayout();
+            groupBoxObjects.SuspendLayout();
             SuspendLayout();
             // 
             // label1
@@ -320,7 +324,7 @@
             // 
             btnModifyFields.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             btnModifyFields.Font = new Font("Times New Roman", 10F);
-            btnModifyFields.Location = new Point(553, 551);
+            btnModifyFields.Location = new Point(553, 550);
             btnModifyFields.Name = "btnModifyFields";
             btnModifyFields.Size = new Size(155, 35);
             btnModifyFields.TabIndex = 23;
@@ -342,7 +346,7 @@
             // 
             btnClear.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             btnClear.Font = new Font("Times New Roman", 10F);
-            btnClear.Location = new Point(400, 597);
+            btnClear.Location = new Point(400, 592);
             btnClear.Name = "btnClear";
             btnClear.Size = new Size(120, 35);
             btnClear.TabIndex = 26;
@@ -392,7 +396,7 @@
             btnBack.BackColor = Color.White;
             btnBack.Font = new Font("Times New Roman", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 204);
             btnBack.ForeColor = Color.Black;
-            btnBack.Location = new Point(886, 593);
+            btnBack.Location = new Point(886, 595);
             btnBack.Name = "btnBack";
             btnBack.Size = new Size(114, 39);
             btnBack.TabIndex = 27;
@@ -400,19 +404,13 @@
             btnBack.UseVisualStyleBackColor = true;
             btnBack.Click += BtnBack;
             // 
-            // contextMenuStrip1
-            // 
-            contextMenuStrip1.ImageScalingSize = new Size(20, 20);
-            contextMenuStrip1.Name = "contextMenuStrip1";
-            contextMenuStrip1.Size = new Size(61, 4);
-            // 
             // objectFields
             // 
             objectFields.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             objectFields.DropDownStyle = ComboBoxStyle.DropDownList;
             objectFields.FormattingEnabled = true;
             objectFields.Items.AddRange(new object[] { "name", "address", "purchaseCount", "productCount", "averageCheck", "rating", "isActive" });
-            objectFields.Location = new Point(875, 504);
+            objectFields.Location = new Point(876, 507);
             objectFields.Margin = new Padding(3, 4, 3, 4);
             objectFields.Name = "objectFields";
             objectFields.Size = new Size(125, 28);
@@ -429,7 +427,7 @@
             // newFieldValue
             // 
             newFieldValue.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            newFieldValue.Location = new Point(875, 551);
+            newFieldValue.Location = new Point(876, 559);
             newFieldValue.Margin = new Padding(3, 4, 3, 4);
             newFieldValue.Name = "newFieldValue";
             newFieldValue.Size = new Size(125, 27);
@@ -440,7 +438,7 @@
             label11.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             label11.AutoSize = true;
             label11.Font = new Font("Times New Roman", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 204);
-            label11.Location = new Point(722, 554);
+            label11.Location = new Point(730, 558);
             label11.Name = "label11";
             label11.Size = new Size(137, 20);
             label11.TabIndex = 33;
@@ -451,17 +449,76 @@
             label12.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             label12.AutoSize = true;
             label12.Font = new Font("Times New Roman", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 204);
-            label12.Location = new Point(722, 504);
+            label12.Location = new Point(730, 507);
             label12.Name = "label12";
             label12.Size = new Size(133, 20);
             label12.TabIndex = 34;
             label12.Text = "Выберите поле";
             // 
+            // groupBoxObjects
+            // 
+            groupBoxObjects.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            groupBoxObjects.Controls.Add(lblCurrentObject);
+            groupBoxObjects.Controls.Add(cmbObjectsList);
+            groupBoxObjects.Controls.Add(btnSwitchToSelected);
+            groupBoxObjects.Controls.Add(btnDeleteObject);
+            groupBoxObjects.Font = new Font("Times New Roman", 10F, FontStyle.Bold);
+            groupBoxObjects.Location = new Point(21, 590);
+            groupBoxObjects.Name = "groupBoxObjects";
+            groupBoxObjects.Size = new Size(350, 100);
+            groupBoxObjects.TabIndex = 35;
+            groupBoxObjects.TabStop = false;
+            groupBoxObjects.Text = "Управление объектами";
+            // 
+            // lblCurrentObject
+            // 
+            lblCurrentObject.AutoSize = true;
+            lblCurrentObject.Font = new Font("Times New Roman", 9F, FontStyle.Italic);
+            lblCurrentObject.ForeColor = Color.Black;
+            lblCurrentObject.Location = new Point(10, 25);
+            lblCurrentObject.Name = "lblCurrentObject";
+            lblCurrentObject.Size = new Size(193, 17);
+            lblCurrentObject.TabIndex = 0;
+            lblCurrentObject.Text = "Текущий объект: не выбран";
+            // 
+            // cmbObjectsList
+            // 
+            cmbObjectsList.DropDownStyle = ComboBoxStyle.DropDownList;
+            cmbObjectsList.Font = new Font("Times New Roman", 10F);
+            cmbObjectsList.FormattingEnabled = true;
+            cmbObjectsList.Location = new Point(10, 50);
+            cmbObjectsList.Name = "cmbObjectsList";
+            cmbObjectsList.Size = new Size(200, 27);
+            cmbObjectsList.TabIndex = 1;
+            // 
+            // btnSwitchToSelected
+            // 
+            btnSwitchToSelected.Font = new Font("Times New Roman", 9F);
+            btnSwitchToSelected.Location = new Point(238, 18);
+            btnSwitchToSelected.Name = "btnSwitchToSelected";
+            btnSwitchToSelected.Size = new Size(91, 30);
+            btnSwitchToSelected.TabIndex = 2;
+            btnSwitchToSelected.Text = "Выбрать";
+            btnSwitchToSelected.Click += btnSwitchToSelected_Click;
+            // 
+            // btnDeleteObject
+            // 
+            btnDeleteObject.BackColor = Color.White;
+            btnDeleteObject.Font = new Font("Times New Roman", 9F);
+            btnDeleteObject.Location = new Point(238, 54);
+            btnDeleteObject.Name = "btnDeleteObject";
+            btnDeleteObject.Size = new Size(91, 30);
+            btnDeleteObject.TabIndex = 3;
+            btnDeleteObject.Text = "Удалить";
+            btnDeleteObject.UseVisualStyleBackColor = false;
+            btnDeleteObject.Click += btnDeleteObject_Click;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1013, 663);
+            ClientSize = new Size(1013, 710);
+            Controls.Add(groupBoxObjects);
             Controls.Add(label12);
             Controls.Add(label11);
             Controls.Add(newFieldValue);
@@ -492,6 +549,8 @@
             groupBoxInput.ResumeLayout(false);
             groupBoxInput.PerformLayout();
             groupBoxStatus.ResumeLayout(false);
+            groupBoxObjects.ResumeLayout(false);
+            groupBoxObjects.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -526,11 +585,15 @@
         private Button btnShowHex;
         private Button btnClear;
         private Button btnBack;
-        private ContextMenuStrip contextMenuStrip1;
         private ComboBox objectFields;
         private Label label10;
         private TextBox newFieldValue;
         private Label label11;
         private Label label12;
+        private GroupBox groupBoxObjects;
+        private ComboBox cmbObjectsList;
+        private Button btnSwitchToSelected;
+        private Button btnDeleteObject;
+        private Label lblCurrentObject;
     }
 }
