@@ -248,15 +248,35 @@ namespace LABA_1
                     currentShop.address = newValue;
                     break;
                 case "purchaseCount":
+                    if (!int.TryParse(newValue, out int purchaseCount) || purchaseCount < 0)
+                    {
+                        ShowNativeMessageBox("Ошибка", "Количество покупок должно быть целым неотрицательным числом", 16);
+                        return;
+                    }
                     currentShop.purchaseCount = int.Parse(newValue);
                     break;
                 case "productCount":
+                    if (!int.TryParse(newValue, out int productCount) || productCount < 0)
+                    {
+                        ShowNativeMessageBox("Ошибка", "Количество товаров должно быть целым неотрицательным числом", 16);
+                        return;
+                    }
                     currentShop.productCount = int.Parse(newValue);
                     break;
                 case "averageCheck":
+                    if (!double.TryParse(newValue, out double averageCheck) || averageCheck < 0)
+                    {
+                        ShowNativeMessageBox("Ошибка", "Средний чек должен быть неотрицательным числом", 16);
+                        return;
+                    }
                     currentShop.averageCheck = double.Parse(newValue);
                     break;
                 case "rating":
+                    if (!double.TryParse(newValue, out double rating) || rating < 1 || rating > 5)
+                    {
+                        ShowNativeMessageBox("Ошибка", "Рейтинг должен быть числом от 1 до 5", 16);
+                        return;
+                    }
                     currentShop.rating = double.Parse(newValue);
                     break;
                 case "isActive":
@@ -277,11 +297,6 @@ namespace LABA_1
                 DisplayCurrentShopInfo();
                 ShowNativeMessageBox("Успех", "Значение поля изменено!", 0x40);
             }
-        }
-
-        private void label12_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }
