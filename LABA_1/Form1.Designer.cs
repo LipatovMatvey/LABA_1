@@ -392,7 +392,7 @@
             btnBack.BackColor = Color.White;
             btnBack.Font = new Font("Times New Roman", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 204);
             btnBack.ForeColor = Color.Black;
-            btnBack.Location = new Point(886, 609);
+            btnBack.Location = new Point(886, 593);
             btnBack.Name = "btnBack";
             btnBack.Size = new Size(114, 39);
             btnBack.TabIndex = 27;

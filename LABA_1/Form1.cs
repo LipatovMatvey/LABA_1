@@ -178,8 +178,6 @@ namespace LABA_1
                     txtDisplayInfo.Text = "Выберите поле для отображения";
                     break;
             }
-
-
             if (txtDisplayInfo.Text != "Выберите поле для отображения")
             {
                 ShowNativeMessageBox("Успех", "Значение поля отображено!", 0x40);
@@ -205,8 +203,6 @@ namespace LABA_1
         {
             DisplayCurrentShopInfo();
         }
-
-        
 
         /// <summary>
         /// Обработчик изменения значения выбранного поля текущего объекта
