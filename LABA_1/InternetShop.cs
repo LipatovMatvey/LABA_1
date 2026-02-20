@@ -57,7 +57,7 @@ namespace LABA_1
 
         /// <summary>
         /// Конструктор с одним параметром
-        /// </summary>
+        /// </summary>  
         /// <param name="name">Название магазина</param>
         public InternetShop(string name)
         {
