@@ -9,17 +9,17 @@ namespace LABA_1
         public static extern int MessageBox(IntPtr hWnd, string text, string caption, uint type);
 
         /// <summary>
-        /// Объект
+        /// Текущий активный объект интернет-магазина
         /// </summary>
         private InternetShop currentShop;
 
         /// <summary>
-        /// Список объектов
+        /// Коллекция для хранения всех созданных объектов интернет-магазинов
         /// </summary>
         private List<InternetShop> shopsList;
 
         /// <summary>
-        /// 
+        /// Конструктор формы
         /// </summary>
         public Form1()
         {
@@ -28,7 +28,7 @@ namespace LABA_1
         }
 
         /// <summary>
-        /// 
+        /// Обработчик кнопки закрытия
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -38,7 +38,7 @@ namespace LABA_1
         }
 
         /// <summary>
-        /// 
+        /// Обработчик кнопки создания объекта интернет-магазина
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -86,11 +86,11 @@ namespace LABA_1
         }
 
         /// <summary>
-        /// 
+        /// Обертка для вызова нативного MessageBox
         /// </summary>
-        /// <param name="caption"></param>
-        /// <param name="text"></param>
-        /// <param name="type"></param>
+        /// <param name="caption">Заголовок окна сообщения</param>
+        /// <param name="text">Текст сообщения</param>
+        /// <param name="type">Тип сообщения</param>
         /// <returns></returns>
         private int ShowNativeMessageBox(string caption, string text, uint type)
         {
@@ -98,7 +98,7 @@ namespace LABA_1
         }
 
         /// <summary>
-        /// 
+        /// Обновляет отображение количества созданных объектов в интерфейсе
         /// </summary>
         private void UpdateObjectCount()
         {
@@ -106,7 +106,7 @@ namespace LABA_1
         }
 
         /// <summary>
-        /// 
+        /// Отображает информацию о текущем объекте в текстовом поле
         /// </summary>
         private void DisplayCurrentShopInfo()
         {
@@ -119,16 +119,21 @@ namespace LABA_1
             txtDisplayInfo.AppendText(currentShop.ToString());
         }
 
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
+        /// <summary>
+        /// Обработчик кнопки очистки поля отображения информации
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnShowHex_Click(object sender, EventArgs e)
         {
             txtDisplayInfo.Clear();
         }
 
+        /// <summary>
+        /// Обработчик отображения значения выбранного поля текущего объекта
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnShowField_Click(object sender, EventArgs e)
         {
             if (currentShop == null)
@@ -164,28 +169,37 @@ namespace LABA_1
                     txtDisplayInfo.Text = "Выберите поле для отображения";
                     break;
             }
-
             if (txtDisplayInfo.Text != "Выберите поле для отображения") 
             {
                 ShowNativeMessageBox("Успех", "Значение поля отображено!", 0x40);
             }
         }
 
+        /// <summary>
+        /// Обработчик кнопки очистки текстового поля
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnClear_Click_1(object sender, EventArgs e)
         {
             txtDisplayInfo.Clear();
         }
 
+        /// <summary>
+        /// Обработчик кнопки отображения полной информации о текущем объекте
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnShowInfo_Click(object sender, EventArgs e)
         {
             DisplayCurrentShopInfo();
         }
 
-        private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
+        /// <summary>
+        /// Обработчик изменения значения выбранного поля текущего объекта
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnModifyFields_Click(object sender, EventArgs e)
         {
             if (currentShop == null)
@@ -193,16 +207,13 @@ namespace LABA_1
                 ShowNativeMessageBox("Ошибка", "Сначала создайте объект! Поле не определено", 16);
                 return;
             }
-
             string selectedField = objectFields.SelectedItem as string;
             string newValue = newFieldValue.Text;
-
             if (newValue == "")
             {
                 ShowNativeMessageBox("Ошибка", "Значение не может быть пустым", 16);
                 return;
             }
-
             switch (selectedField)
             {
                 case "name":
@@ -230,7 +241,6 @@ namespace LABA_1
                     txtDisplayInfo.Text = "Выберите поле для изменения";
                     break;
             }
-
             if (txtDisplayInfo.Text != "Выберите поле для отображения")
             {
                 DisplayCurrentShopInfo();

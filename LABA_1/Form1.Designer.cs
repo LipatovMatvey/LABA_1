@@ -84,7 +84,6 @@
             label1.Size = new Size(270, 57);
             label1.TabIndex = 0;
             label1.Text = "Лабораторная работа №1\r\nСтуденты: Липатов М. Кузнецов Н.\r\nГруппа: 24ВП2";
-            label1.Click += label1_Click;
             // 
             // panel1
             // 
@@ -424,7 +423,6 @@
             objectFields.Size = new Size(121, 23);
             objectFields.TabIndex = 30;
             objectFields.Text = "Выберите поле";
-            objectFields.SelectedIndexChanged += comboBox2_SelectedIndexChanged;
             // 
             // label10
             // 
