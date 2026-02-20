@@ -63,6 +63,7 @@
             label10 = new Label();
             newFieldValue = new TextBox();
             label11 = new Label();
+            label12 = new Label();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)numericUpDown1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)numericUpDown2).BeginInit();
@@ -278,6 +279,7 @@
             // 
             // groupBoxDisplay
             // 
+            groupBoxDisplay.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             groupBoxDisplay.Controls.Add(txtDisplayInfo);
             groupBoxDisplay.Font = new Font("Times New Roman", 10F, FontStyle.Bold);
             groupBoxDisplay.Location = new Point(350, 105);
@@ -397,6 +399,7 @@
             // 
             // btnBack
             // 
+            btnBack.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             btnBack.BackColor = Color.White;
             btnBack.Font = new Font("Times New Roman", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 204);
             btnBack.ForeColor = Color.Black;
@@ -417,13 +420,13 @@
             // objectFields
             // 
             objectFields.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            objectFields.DropDownStyle = ComboBoxStyle.DropDownList;
             objectFields.FormattingEnabled = true;
             objectFields.Items.AddRange(new object[] { "name", "address", "purchaseCount", "productCount", "averageCheck", "rating", "isActive" });
-            objectFields.Location = new Point(639, 378);
+            objectFields.Location = new Point(754, 378);
             objectFields.Name = "objectFields";
             objectFields.Size = new Size(121, 23);
             objectFields.TabIndex = 30;
-            objectFields.Text = "Выберите поле";
             objectFields.SelectedIndexChanged += comboBox2_SelectedIndexChanged;
             // 
             // label10
@@ -436,26 +439,41 @@
             // 
             // newFieldValue
             // 
-            newFieldValue.Location = new Point(775, 413);
+            newFieldValue.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            newFieldValue.Location = new Point(754, 413);
             newFieldValue.Name = "newFieldValue";
-            newFieldValue.Size = new Size(100, 23);
+            newFieldValue.Size = new Size(121, 23);
             newFieldValue.TabIndex = 32;
             // 
             // label11
             // 
+            label11.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             label11.AutoSize = true;
             label11.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 204);
-            label11.Location = new Point(634, 416);
+            label11.Location = new Point(626, 415);
             label11.Name = "label11";
             label11.Size = new Size(124, 20);
             label11.TabIndex = 33;
             label11.Text = "Новое значение";
+            // 
+            // label12
+            // 
+            label12.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            label12.AutoSize = true;
+            label12.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            label12.Location = new Point(632, 378);
+            label12.Name = "label12";
+            label12.Size = new Size(116, 20);
+            label12.TabIndex = 34;
+            label12.Text = "Выберите поле";
+            label12.Click += label12_Click;
             // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(886, 497);
+            Controls.Add(label12);
             Controls.Add(label11);
             Controls.Add(newFieldValue);
             Controls.Add(label10);
@@ -525,5 +543,6 @@
         private Label label10;
         private TextBox newFieldValue;
         private Label label11;
+        private Label label12;
     }
 }

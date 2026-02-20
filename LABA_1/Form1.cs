@@ -1,4 +1,5 @@
 using System.Runtime.InteropServices;
+using System.Text.RegularExpressions;
 
 namespace LABA_1
 {
@@ -54,7 +55,7 @@ namespace LABA_1
                 double rating = (double)numericUpDown4.Value;
                 bool active = comboBox1.SelectedIndex == 0;
                 if (string.IsNullOrEmpty(name) && string.IsNullOrEmpty(address) &&
-                    purchases == 0 && products == 0 && avgCheck == 0 && rating == 0)
+                    purchases == 0 && products == 0 && avgCheck == 0 && rating == 0 && active == false)
                 {
                     currentShop = new InternetShop();
                     ShowNativeMessageBox("Успех", "Объект создан с конструктором по умолчанию", 0);
@@ -126,7 +127,14 @@ namespace LABA_1
 
         private void btnShowHex_Click(object sender, EventArgs e)
         {
-            txtDisplayInfo.Clear();
+            if (currentShop == null)
+            {
+                ShowNativeMessageBox("Ошибка", "Сначала создайте объект!", 16);
+                return;
+            }
+            string hexView = currentShop.GetProductCountHex();
+            txtDisplayInfo.Text = hexView;
+            ShowNativeMessageBox("Успех", "Значение поля отображено!", 0x40);
         }
 
         private void btnShowField_Click(object sender, EventArgs e)
@@ -165,7 +173,7 @@ namespace LABA_1
                     break;
             }
 
-            if (txtDisplayInfo.Text != "Выберите поле для отображения") 
+            if (txtDisplayInfo.Text != "Выберите поле для отображения")
             {
                 ShowNativeMessageBox("Успех", "Значение поля отображено!", 0x40);
             }
@@ -206,9 +214,21 @@ namespace LABA_1
             switch (selectedField)
             {
                 case "name":
+                    string pattern1 = @"^(?!\d+$)(?!.*\s{2})[A-Za-zА-Яа-яЁё0-9&""' -]{2,15}$";
+                    if (!Regex.IsMatch(newValue, pattern1))
+                    {
+                        ShowNativeMessageBox("Ошибка", "Имя магазина некорректно", 16);
+                        return;
+                    }
                     currentShop.name = newValue;
                     break;
                 case "address":
+                    string pattern2 = @"^(?!\d+$)(?!.*\s{2})[A-Za-zА-Яа-яЁё0-9&""'., -]{2,40}$";
+                    if (!Regex.IsMatch(newValue, pattern2))
+                    {
+                        ShowNativeMessageBox("Ошибка", "Адрес некорректен", 16);
+                        return;
+                    }
                     currentShop.address = newValue;
                     break;
                 case "purchaseCount":
@@ -224,7 +244,13 @@ namespace LABA_1
                     currentShop.rating = double.Parse(newValue);
                     break;
                 case "isActive":
-                    currentShop.isActive = Convert.ToBoolean(newValue);
+                    if (!newValue.Equals("да", StringComparison.OrdinalIgnoreCase) &&
+                        !newValue.Equals("нет", StringComparison.OrdinalIgnoreCase))
+                    {
+                        ShowNativeMessageBox("Ошибка", "Значение может быть \"да/нет\"", 16);
+                        return;
+                    }
+                    currentShop.isActive = newValue.ToLower() == "да" ? true : false;
                     break;
                 default:
                     txtDisplayInfo.Text = "Выберите поле для изменения";
@@ -234,8 +260,13 @@ namespace LABA_1
             if (txtDisplayInfo.Text != "Выберите поле для отображения")
             {
                 DisplayCurrentShopInfo();
-                ShowNativeMessageBox("Успех", "Значение поля изменено!", 0x40);               
+                ShowNativeMessageBox("Успех", "Значение поля изменено!", 0x40);
             }
+        }
+
+        private void label12_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
