@@ -63,6 +63,7 @@
             label10 = new Label();
             newFieldValue = new TextBox();
             label11 = new Label();
+            label12 = new Label();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)numericUpDown1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)numericUpDown2).BeginInit();
@@ -92,7 +93,7 @@
             panel1.BackColor = SystemColors.Highlight;
             panel1.Controls.Add(label2);
             panel1.Controls.Add(label1);
-            panel1.Location = new Point(0, 0);
+            panel1.Location = new Point(99, 0);
             panel1.Name = "panel1";
             panel1.Size = new Size(1013, 100);
             panel1.TabIndex = 1;
@@ -263,7 +264,7 @@
             lblObjectCount.AutoSize = true;
             lblObjectCount.Font = new Font("Times New Roman", 11F, FontStyle.Bold);
             lblObjectCount.ForeColor = Color.Blue;
-            lblObjectCount.Location = new Point(21, 109);
+            lblObjectCount.Location = new Point(120, 109);
             lblObjectCount.Name = "lblObjectCount";
             lblObjectCount.Size = new Size(188, 22);
             lblObjectCount.TabIndex = 17;
@@ -271,10 +272,10 @@
             // 
             // groupBoxDisplay
             // 
-            groupBoxDisplay.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            groupBoxDisplay.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             groupBoxDisplay.Controls.Add(txtDisplayInfo);
             groupBoxDisplay.Font = new Font("Times New Roman", 10F, FontStyle.Bold);
-            groupBoxDisplay.Location = new Point(400, 140);
+            groupBoxDisplay.Location = new Point(499, 140);
             groupBoxDisplay.Name = "groupBoxDisplay";
             groupBoxDisplay.Size = new Size(421, 349);
             groupBoxDisplay.TabIndex = 20;
@@ -297,7 +298,7 @@
             // 
             btnShowInfo.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             btnShowInfo.Font = new Font("Times New Roman", 10F);
-            btnShowInfo.Location = new Point(400, 500);
+            btnShowInfo.Location = new Point(499, 500);
             btnShowInfo.Name = "btnShowInfo";
             btnShowInfo.Size = new Size(146, 35);
             btnShowInfo.TabIndex = 21;
@@ -308,7 +309,7 @@
             // 
             btnShowField.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             btnShowField.Font = new Font("Times New Roman", 10F);
-            btnShowField.Location = new Point(553, 500);
+            btnShowField.Location = new Point(652, 500);
             btnShowField.Name = "btnShowField";
             btnShowField.Size = new Size(155, 35);
             btnShowField.TabIndex = 22;
@@ -319,7 +320,7 @@
             // 
             btnModifyFields.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             btnModifyFields.Font = new Font("Times New Roman", 10F);
-            btnModifyFields.Location = new Point(553, 551);
+            btnModifyFields.Location = new Point(652, 551);
             btnModifyFields.Name = "btnModifyFields";
             btnModifyFields.Size = new Size(155, 35);
             btnModifyFields.TabIndex = 23;
@@ -330,7 +331,7 @@
             // 
             btnShowHex.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             btnShowHex.Font = new Font("Times New Roman", 10F);
-            btnShowHex.Location = new Point(400, 551);
+            btnShowHex.Location = new Point(499, 551);
             btnShowHex.Name = "btnShowHex";
             btnShowHex.Size = new Size(146, 35);
             btnShowHex.TabIndex = 24;
@@ -341,7 +342,7 @@
             // 
             btnClear.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             btnClear.Font = new Font("Times New Roman", 10F);
-            btnClear.Location = new Point(400, 597);
+            btnClear.Location = new Point(499, 597);
             btnClear.Name = "btnClear";
             btnClear.Size = new Size(120, 35);
             btnClear.TabIndex = 26;
@@ -366,7 +367,7 @@
             groupBoxInput.Controls.Add(label8);
             groupBoxInput.Controls.Add(numericUpDown4);
             groupBoxInput.Font = new Font("Times New Roman", 10F, FontStyle.Bold);
-            groupBoxInput.Location = new Point(21, 140);
+            groupBoxInput.Location = new Point(120, 140);
             groupBoxInput.Name = "groupBoxInput";
             groupBoxInput.Size = new Size(350, 349);
             groupBoxInput.TabIndex = 18;
@@ -378,7 +379,7 @@
             groupBoxStatus.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             groupBoxStatus.Controls.Add(button1);
             groupBoxStatus.Font = new Font("Times New Roman", 10F, FontStyle.Bold);
-            groupBoxStatus.Location = new Point(21, 500);
+            groupBoxStatus.Location = new Point(120, 500);
             groupBoxStatus.Name = "groupBoxStatus";
             groupBoxStatus.Size = new Size(350, 85);
             groupBoxStatus.TabIndex = 19;
@@ -391,7 +392,7 @@
             btnBack.BackColor = Color.White;
             btnBack.Font = new Font("Times New Roman", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 204);
             btnBack.ForeColor = Color.Black;
-            btnBack.Location = new Point(886, 609);
+            btnBack.Location = new Point(985, 609);
             btnBack.Name = "btnBack";
             btnBack.Size = new Size(114, 39);
             btnBack.TabIndex = 27;
@@ -408,14 +409,13 @@
             // objectFields
             // 
             objectFields.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            objectFields.DropDownStyle = ComboBoxStyle.DropDownList;
             objectFields.FormattingEnabled = true;
             objectFields.Items.AddRange(new object[] { "name", "address", "purchaseCount", "productCount", "averageCheck", "rating", "isActive" });
-            objectFields.Location = new Point(730, 504);
-            objectFields.Margin = new Padding(3, 4, 3, 4);
+            objectFields.Location = new Point(853, 378);
             objectFields.Name = "objectFields";
             objectFields.Size = new Size(138, 28);
             objectFields.TabIndex = 30;
-            objectFields.Text = "Выберите поле";
             // 
             // label10
             // 
@@ -428,10 +428,9 @@
             // newFieldValue
             // 
             newFieldValue.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            newFieldValue.Location = new Point(886, 551);
-            newFieldValue.Margin = new Padding(3, 4, 3, 4);
+            newFieldValue.Location = new Point(853, 413);
             newFieldValue.Name = "newFieldValue";
-            newFieldValue.Size = new Size(114, 27);
+            newFieldValue.Size = new Size(121, 27);
             newFieldValue.TabIndex = 32;
             // 
             // label11
@@ -439,17 +438,29 @@
             label11.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             label11.AutoSize = true;
             label11.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 204);
-            label11.Location = new Point(725, 555);
+            label11.Location = new Point(725, 415);
             label11.Name = "label11";
             label11.Size = new Size(154, 25);
             label11.TabIndex = 33;
             label11.Text = "Новое значение";
             // 
+            // label12
+            // 
+            label12.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            label12.AutoSize = true;
+            label12.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            label12.Location = new Point(731, 378);
+            label12.Name = "label12";
+            label12.Size = new Size(144, 25);
+            label12.TabIndex = 34;
+            label12.Text = "Выберите поле";
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1013, 663);
+            ClientSize = new Size(985, 640);
+            Controls.Add(label12);
             Controls.Add(label11);
             Controls.Add(newFieldValue);
             Controls.Add(label10);
@@ -518,5 +529,6 @@
         private Label label10;
         private TextBox newFieldValue;
         private Label label11;
+        private Label label12;
     }
 }
