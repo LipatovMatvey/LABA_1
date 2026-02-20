@@ -53,22 +53,22 @@ namespace LABA_1
                 double avgCheck = (double)numericUpDown3.Value;
                 double rating = (double)numericUpDown4.Value;
                 bool active = comboBox1.SelectedIndex == 0;
-                if (string.IsNullOrEmpty(name) && string.IsNullOrEmpty(address) &&
-                    purchases == 0 && products == 0 && avgCheck == 0 && rating == 0)
+                if (purchases == 0 && products == 0 && avgCheck == 0 && rating == 0 && 
+                    active == false && string.IsNullOrEmpty(name) && string.IsNullOrEmpty(address))
                 {
                     currentShop = new InternetShop();
-                    ShowNativeMessageBox("Успех", "Объект создан с конструктором по умолчанию", 0);
+                    ShowNativeMessageBox("Успех", $"Объект создан с конструктором по умолчанию", 0);
                 }
                 else if (string.IsNullOrEmpty(address) && purchases == 0 &&
-                         products == 0 && avgCheck == 0 && rating == 0)
+                         products == 0 && avgCheck == 0 && rating == 0 && active == false)
                 {
                     currentShop = new InternetShop(name);
                     ShowNativeMessageBox("Успех", $"Объект создан с конструктором с одним параметром: {name}", 0);
                 }
-                else if (purchases == 0 && products == 0 && avgCheck == 0 && rating == 0)
+                else if (purchases == 0 && products == 0 && avgCheck == 0 && rating == 0 && active == false)
                 {
                     currentShop = new InternetShop(name, address);
-                    ShowNativeMessageBox("Успех", $"Объект создан с конструктором с двумя параметрами", 0);
+                    ShowNativeMessageBox("Успех", $"Объект создан с конструктором с двумя параметром", 0);
                 }
                 else
                 {
@@ -194,6 +194,8 @@ namespace LABA_1
         {
             DisplayCurrentShopInfo();
         }
+
+        
 
         /// <summary>
         /// Обработчик изменения значения выбранного поля текущего объекта
