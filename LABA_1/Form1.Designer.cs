@@ -416,6 +416,10 @@
             objectFields.Name = "objectFields";
             objectFields.Size = new Size(138, 28);
             objectFields.TabIndex = 30;
+            objectFields.SelectedIndexChanged += comboBox2_SelectedIndexChanged;
+            objectFields.SelectedIndexChanged += comboBox2_SelectedIndexChanged;
+            objectFields.SelectedIndexChanged += comboBox2_SelectedIndexChanged;
+            objectFields.SelectedIndexChanged += comboBox2_SelectedIndexChanged;
             // 
             // label10
             // 
@@ -423,27 +427,23 @@
             label10.Location = new Point(730, 551);
             label10.Name = "label10";
             label10.Size = new Size(0, 20);
-            label10.TabIndex = 31;
-            // 
-            // newFieldValue
-            // 
             newFieldValue.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             newFieldValue.Location = new Point(853, 413);
-            newFieldValue.Name = "newFieldValue";
+            newFieldValue.Location = new Point(775, 413);
             newFieldValue.Size = new Size(121, 27);
+            newFieldValue.Size = new Size(100, 23);
+            newFieldValue.Size = new Size(100, 23);
+            newFieldValue.Size = new Size(100, 23);
+            newFieldValue.Size = new Size(100, 23);
             newFieldValue.TabIndex = 32;
             // 
             // label11
-            // 
-            label11.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            label11.AutoSize = true;
-            label11.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 204);
             label11.Location = new Point(725, 415);
+            label11.Location = new Point(634, 416);
+            label11.Location = new Point(634, 416);
+            label11.Location = new Point(634, 416);
+            label11.Location = new Point(634, 416);
             label11.Name = "label11";
-            label11.Size = new Size(154, 25);
-            label11.TabIndex = 33;
-            label11.Text = "Новое значение";
-            // 
             // label12
             // 
             label12.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
@@ -455,12 +455,16 @@
             label12.TabIndex = 34;
             label12.Text = "Выберите поле";
             // 
-            // Form1
+            label11.Size = new Size(154, 25);
+            label11.TabIndex = 33;
+            label11.Text = "Новое значение";
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
-            AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(985, 640);
             Controls.Add(label12);
+            ClientSize = new Size(886, 497);
+            ClientSize = new Size(886, 497);
+            ClientSize = new Size(886, 497);
+            ClientSize = new Size(886, 497);
             Controls.Add(label11);
             Controls.Add(newFieldValue);
             Controls.Add(label10);

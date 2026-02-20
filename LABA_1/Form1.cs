@@ -278,5 +278,10 @@ namespace LABA_1
                 ShowNativeMessageBox("Успех", "Значение поля изменено!", 0x40);
             }
         }
+
+        private void label12_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
