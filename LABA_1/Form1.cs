@@ -5,7 +5,14 @@ namespace LABA_1
 {
     public partial class Form1 : Form
     {
-
+        /// <summary>
+        /// Импорт функции MessageBox из библиотеки user32.dll
+        /// </summary>
+        /// <param name="hWnd">Дескриптор родительского окна</param>
+        /// <param name="text">Текст сообщения, отображаемый в окне</param>
+        /// <param name="caption">Заголовок окна сообщения</param>
+        /// <param name="type">Тип сообщения</param>
+        /// <returns></returns>
         [DllImport("user32.dll", CharSet = CharSet.Auto)]
         public static extern int MessageBox(IntPtr hWnd, string text, string caption, uint type);
 
@@ -31,8 +38,8 @@ namespace LABA_1
         /// <summary>
         /// Обработчик кнопки закрытия
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+        /// <param name="sender">Объект, вызвавший событие</param>
+        /// <param name="e">Аргументы события</param>
         private void BtnBack(object sender, EventArgs e)
         {
             Close();
@@ -41,8 +48,8 @@ namespace LABA_1
         /// <summary>
         /// Обработчик кнопки создания объекта интернет-магазина
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+        /// <param name="sender">Объект, вызвавший событие</param>
+        /// <param name="e">Аргументы события</param>
         private void Button1_Click(object sender, EventArgs e)
         {
             try
@@ -90,9 +97,9 @@ namespace LABA_1
         /// <summary>
         /// Обертка для вызова нативного MessageBox
         /// </summary>
-        /// <param name="caption"></param>
-        /// <param name="text"></param>
-        /// <param name="type"></param>
+        /// <param name="caption">Заголовок окна</param>
+        /// <param name="text">Текст сообщения</param>
+        /// <param name="type">Тип сообщения</param>
         /// <returns></returns>
         private int ShowNativeMessageBox(string caption, string text, uint type)
         {
@@ -154,8 +161,8 @@ namespace LABA_1
         /// <summary>
         /// Обработчик кнопки 16-ричного вывода
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+        /// <param name="sender">Объект, вызвавший событие</param>
+        /// <param name="e">Аргументы события</param>
         private void btnShowHex_Click(object sender, EventArgs e)
         {
             if (currentShop == null)
@@ -171,8 +178,8 @@ namespace LABA_1
         /// <summary>
         /// Обработчик отображения значения выбранного поля текущего объекта
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+        /// <param name="sender">Объект, вызвавший событие</param>
+        /// <param name="e">Аргументы события</param>
         private void btnShowField_Click(object sender, EventArgs e)
         {
             if (currentShop == null)
@@ -219,8 +226,8 @@ namespace LABA_1
         /// <summary>
         /// Обработчик кнопки очистки текстового поля
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+        /// <param name="sender">Объект, вызвавший событие</param>
+        /// <param name="e">Аргументы события</param>
         private void btnClear_Click_1(object sender, EventArgs e)
         {
             txtDisplayInfo.Clear();
@@ -229,8 +236,8 @@ namespace LABA_1
         /// <summary>
         /// Обработчик кнопки отображения полной информации о текущем объекте
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+        /// <param name="sender">Объект, вызвавший событие</param>
+        /// <param name="e">Аргументы события</param>
         private void btnShowInfo_Click(object sender, EventArgs e)
         {
             DisplayCurrentShopInfo();
@@ -239,8 +246,8 @@ namespace LABA_1
         /// <summary>
         /// Обработчик изменения значения выбранного поля текущего объекта
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+        /// <param name="sender">Объект, вызвавший событие</param>
+        /// <param name="e">Аргументы события</param>
         private void btnModifyFields_Click(object sender, EventArgs e)
         {
             if (currentShop == null)
@@ -345,8 +352,8 @@ namespace LABA_1
         /// <summary>
         /// Переключение на выбранный объект
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+        /// <param name="sender">Объект, вызвавший событие</param>
+        /// <param name="e">Аргументы события</param>
         private void btnSwitchToSelected_Click(object sender, EventArgs e)
         {
             if (cmbObjectsList.SelectedIndex >= 0 && cmbObjectsList.SelectedIndex < shopsList.Count)
@@ -365,8 +372,8 @@ namespace LABA_1
         /// <summary>
         /// Удаление выбранного объекта
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+        /// <param name="sender">Объект, вызвавший событие</param>
+        /// <param name="e">Аргументы события</param>
         private void btnDeleteObject_Click(object sender, EventArgs e)
         {
             if (cmbObjectsList.SelectedIndex >= 0 && cmbObjectsList.SelectedIndex < shopsList.Count)
