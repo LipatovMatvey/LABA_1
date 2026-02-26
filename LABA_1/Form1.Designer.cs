@@ -123,7 +123,7 @@
             button1.TabIndex = 2;
             button1.Text = "Создать объект";
             button1.UseVisualStyleBackColor = true;
-            button1.Click += Button1_Click;
+            button1.Click += CreateObject;
             // 
             // textBox1
             // 

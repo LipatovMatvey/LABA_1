@@ -50,7 +50,7 @@ namespace LABA_1
         /// </summary>
         /// <param name="sender">Объект, вызвавший событие</param>
         /// <param name="e">Аргументы события</param>
-        private void Button1_Click(object sender, EventArgs e)
+        private void CreateObject(object sender, EventArgs e)
         {
             try
             {
