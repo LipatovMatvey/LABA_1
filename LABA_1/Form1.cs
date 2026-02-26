@@ -111,7 +111,7 @@ namespace LABA_1
         /// </summary>
         private void UpdateObjectCount()
         {
-            lblObjectCount.Text = $"Создано объектов: {shopsList.Count}";
+            lblObjectCount.Text = $"Создано объектов: {InternetShop.CountObject}";
         }
 
         /// <summary>
@@ -394,6 +394,7 @@ namespace LABA_1
                         currentShop = shopsList[0];
                         DisplayCurrentShopInfo();
                     }
+                    InternetShop.CountObject--;
                     UpdateObjectCount();
                     UpdateObjectsList();
                     ShowNativeMessageBox("Успех", "Объект удален", 0x40);

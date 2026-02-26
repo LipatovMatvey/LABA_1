@@ -6,7 +6,7 @@ using System.Xml.Linq;
 
 namespace LABA_1
 {
-    internal class InternetShop
+    public class InternetShop
     {
         /// <summary>
         /// Наименование магазина
@@ -106,6 +106,8 @@ namespace LABA_1
             set { isActive = value;}
         }
 
+        public static int CountObject = 0;
+
         /// <summary>
         /// Конструктор по умолчанию
         /// </summary>
@@ -118,6 +120,7 @@ namespace LABA_1
             averageCheck = 0.0;
             rating = 0.0;
             isActive = false;
+            CountObject++;
         }
 
         /// <summary>
@@ -133,6 +136,7 @@ namespace LABA_1
             averageCheck = 0.0;
             rating = 0.0;
             isActive = false;
+            CountObject++;
         }
 
         /// <summary>
@@ -149,6 +153,7 @@ namespace LABA_1
             averageCheck = 0.0;
             rating = 0.0;
             isActive = false;
+            CountObject++;
         }
 
         /// <summary>
@@ -171,6 +176,7 @@ namespace LABA_1
             averageCheck = avgCheck;
             rating = shopRating;
             isActive = active;
+            CountObject++;
         }
 
         /// <summary>
