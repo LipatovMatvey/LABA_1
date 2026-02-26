@@ -6,7 +6,7 @@ using System.Xml.Linq;
 
 namespace LABA_1
 {
-    internal class InternetShop
+    public class InternetShop
     {
         /// <summary>
         /// Наименование магазина
@@ -106,12 +106,10 @@ namespace LABA_1
             set { isActive = value;}
         }
 
-
         /// <summary>
         /// Счетчик созданных объектов
         /// </summary>
         public static int ObjectsCount { get; set; }
-
 
         /// <summary>
         /// Конструктор по умолчанию

@@ -397,6 +397,7 @@ namespace LABA_1
                         currentShop = shopsList[0];
                         DisplayCurrentShopInfo();
                     }
+                    InternetShop.ObjectsCount--;
                     UpdateObjectCount();
                     UpdateObjectsList();
                     ShowNativeMessageBox("Успех", "Объект удален", 0x40);
