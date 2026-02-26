@@ -122,7 +122,7 @@ namespace LABA_1
             cmbObjectsList.Items.Clear();
             for (int i = 0; i < shopsList.Count; i++)
             {
-                string displayName = $"Объект {i + 1}: {shopsList[i].name}";
+                string displayName = $"Объект {i + 1}: {shopsList[i].Name}";
                 if (shopsList[i] == currentShop)
                 {
                     displayName += " (текущий)";
@@ -136,7 +136,7 @@ namespace LABA_1
                 {
                     cmbObjectsList.SelectedIndex = currentIndex;
                 }
-                lblCurrentObject.Text = $"Текущий объект: {currentShop.name}";
+                lblCurrentObject.Text = $"Текущий объект: {currentShop.Name}";
             }
             else
             {
@@ -196,25 +196,25 @@ namespace LABA_1
             switch (selectedField)
             {
                 case "name":
-                    txtDisplayInfo.Text = currentShop.name.ToString();
+                    txtDisplayInfo.Text = currentShop.Name.ToString();
                     break;
                 case "address":
-                    txtDisplayInfo.Text = currentShop.address.ToString();
+                    txtDisplayInfo.Text = currentShop.Address.ToString();
                     break;
                 case "purchaseCount":
-                    txtDisplayInfo.Text = currentShop.purchaseCount.ToString();
+                    txtDisplayInfo.Text = currentShop.PurchaseCount.ToString();
                     break;
                 case "productCount":
-                    txtDisplayInfo.Text = currentShop.productCount.ToString();
+                    txtDisplayInfo.Text = currentShop.ProductCount.ToString();
                     break;
                 case "averageCheck":
-                    txtDisplayInfo.Text = currentShop.averageCheck.ToString("F2");
+                    txtDisplayInfo.Text = currentShop.AverageCheck.ToString("F2");
                     break;
                 case "rating":
-                    txtDisplayInfo.Text = currentShop.rating.ToString("F1");
+                    txtDisplayInfo.Text = currentShop.Rating.ToString("F1");
                     break;
                 case "isActive":
-                    txtDisplayInfo.Text = currentShop.isActive.ToString();
+                    txtDisplayInfo.Text = currentShop.IsActive.ToString();
                     break;
                 default:
                     txtDisplayInfo.Text = "Выберите поле для отображения";
@@ -276,7 +276,7 @@ namespace LABA_1
                         ShowNativeMessageBox("Ошибка", "Имя магазина некорректно", 16);
                         return;
                     }
-                    currentShop.name = newValue;
+                    currentShop.Name = newValue;
                     break;
                 case "address":
                     string pattern2 = @"^(?!\d+$)(?!.*\s{2})[A-Za-zА-Яа-яЁё0-9&""'., -]{2,40}$";
@@ -285,7 +285,7 @@ namespace LABA_1
                         ShowNativeMessageBox("Ошибка", "Адрес некорректен", 16);
                         return;
                     }
-                    currentShop.address = newValue;
+                    currentShop.Address = newValue;
                     break;
                 case "purchaseCount":
                     if (!int.TryParse(newValue, out int purchaseCount) || purchaseCount < 0)
@@ -293,7 +293,7 @@ namespace LABA_1
                         ShowNativeMessageBox("Ошибка", "Количество покупок должно быть целым неотрицательным числом", 16);
                         return;
                     }
-                    currentShop.purchaseCount = int.Parse(newValue);
+                    currentShop.PurchaseCount = int.Parse(newValue);
                     break;
                 case "productCount":
                     if (!int.TryParse(newValue, out int productCount) || productCount < 0)
@@ -301,7 +301,7 @@ namespace LABA_1
                         ShowNativeMessageBox("Ошибка", "Количество товаров должно быть целым неотрицательным числом", 16);
                         return;
                     }
-                    currentShop.productCount = int.Parse(newValue);
+                    currentShop.ProductCount = int.Parse(newValue);
                     break;
                 case "averageCheck":
                     if (!double.TryParse(newValue, out double averageCheck) || averageCheck < 0)
@@ -309,7 +309,7 @@ namespace LABA_1
                         ShowNativeMessageBox("Ошибка", "Средний чек должен быть неотрицательным числом", 16);
                         return;
                     }
-                    currentShop.averageCheck = double.Parse(newValue);
+                    currentShop.AverageCheck = double.Parse(newValue);
                     break;
                 case "rating":
                     if (!double.TryParse(newValue, out double rating) || rating < 1 || rating > 5)
@@ -317,7 +317,7 @@ namespace LABA_1
                         ShowNativeMessageBox("Ошибка", "Рейтинг должен быть числом от 1 до 5", 16);
                         return;
                     }
-                    currentShop.rating = double.Parse(newValue);
+                    currentShop.Rating = double.Parse(newValue);
                     break;
                 case "isActive":
                     if (!newValue.Equals("да", StringComparison.OrdinalIgnoreCase) &&
@@ -331,11 +331,11 @@ namespace LABA_1
                     if (newValue.Equals("да", StringComparison.OrdinalIgnoreCase) ||
                         newValue.Equals("true", StringComparison.OrdinalIgnoreCase))
                     {
-                        currentShop.isActive = true;
+                        currentShop.IsActive = true;
                     }
                     else
                     {
-                        currentShop.isActive = false;
+                        currentShop.IsActive = false;
                     }
                     break;
 
@@ -361,7 +361,7 @@ namespace LABA_1
                 currentShop = shopsList[cmbObjectsList.SelectedIndex];
                 UpdateObjectsList();
                 DisplayCurrentShopInfo();
-                ShowNativeMessageBox("Успех", $"Переключено на объект: {currentShop.name}", 0x40);
+                ShowNativeMessageBox("Успех", $"Переключено на объект: {currentShop.Name}", 0x40);
             }
             else
             {
@@ -379,9 +379,8 @@ namespace LABA_1
             if (cmbObjectsList.SelectedIndex >= 0 && cmbObjectsList.SelectedIndex < shopsList.Count)
             {
                 int indexToDelete = cmbObjectsList.SelectedIndex;
-                string deletedName = shopsList[indexToDelete].name;
-                int result = ShowNativeMessageBox("Подтверждение",
-                    $"Удалить объект '{deletedName}'?", 4);
+                string deletedName = shopsList[indexToDelete].Name;
+                int result = ShowNativeMessageBox("Подтверждение", $"Удалить объект '{deletedName}'?", 4);
                 if (result == 6)
                 {
                     shopsList.RemoveAt(indexToDelete);

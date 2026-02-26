@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Net;
 using System.Text;
+using System.Xml.Linq;
 
 namespace LABA_1
 {
@@ -9,37 +11,100 @@ namespace LABA_1
         /// <summary>
         /// Наименование магазина
         /// </summary>
-        public string name {  get; set; }
+        private string name;
+
+        /// <summary>
+        /// Наименование магазина
+        /// </summary>
+        public string Name
+        {
+            get { return name; }
+            set { name = value; }
+        }
 
         /// <summary>
         /// Адрес магазина
         /// </summary>
-        public string address { get; set; }
+        private string address;
+
+        /// <summary>
+        /// Адрес магазина
+        /// </summary>
+        public string Address
+        {
+            get { return  address; }
+            set { address = value; }
+        }
 
         /// <summary>
         /// Число покупок
         /// </summary>
-        public int purchaseCount { get; set; }
+        private int purchaseCount;
+
+        /// <summary>
+        /// Число покупок
+        /// </summary>
+        public int PurchaseCount
+        {
+            get { return purchaseCount;}
+            set { purchaseCount = value; }
+        }
 
         /// <summary>
         /// Количество товаров
         /// </summary>
-        public int productCount { get; set; }
+        private int productCount;
+
+        /// <summary>
+        /// Количество товаров
+        /// </summary>
+        public int ProductCount
+        {
+            get { return productCount;}
+            set { productCount = value; }
+        }
 
         /// <summary>
         /// Средний чек
         /// </summary>
-        public double averageCheck { get; set; }
+        private double averageCheck;
+
+        /// <summary>
+        /// Средний чек
+        /// </summary>
+        public double AverageCheck
+        {
+            get { return averageCheck; }
+            set { averageCheck = value; }
+        }
 
         /// <summary>
         /// Рейтинг магазина
         /// </summary>
-        public double rating { get; set; }
+        private double rating;
+
+        /// <summary>
+        /// Рейтинг магазина
+        /// </summary>
+        public double Rating
+        {
+            get { return rating; }
+            set { rating = value; }
+        }
 
         /// <summary>
         /// Активен ли магазин
         /// </summary>
-        public bool isActive { get; set; }
+        private bool isActive;
+
+        /// <summary>
+        /// Активен ли магазин
+        /// </summary>
+        public bool IsActive
+        {
+            get { return isActive;}
+            set { isActive = value;}
+        }
 
         /// <summary>
         /// Конструктор по умолчанию

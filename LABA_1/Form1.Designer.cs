@@ -93,7 +93,7 @@
             // 
             // panel1
             // 
-            panel1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            panel1.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             panel1.BackColor = SystemColors.Highlight;
             panel1.Controls.Add(label2);
             panel1.Controls.Add(label1);
