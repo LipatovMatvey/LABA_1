@@ -111,7 +111,7 @@ namespace LABA_1
         /// </summary>
         private void UpdateObjectCount()
         {
-            lblObjectCount.Text = $"Создано объектов: {shopsList.Count}";
+            lblObjectCount.Text = $"Создано объектов: {InternetShop.ObjectsCount}";
         }
 
         /// <summary>
@@ -172,7 +172,7 @@ namespace LABA_1
             }
             string hexView = currentShop.GetProductCountHex();
             txtDisplayInfo.Text = hexView;
-            ShowNativeMessageBox("Успех", "Значение поля отображено!", 0x40);
+            ShowNativeMessageBox("Успех", "Значение поля отображено!", 0);
         }
 
         /// <summary>
@@ -384,6 +384,7 @@ namespace LABA_1
                 if (result == 6)
                 {
                     shopsList.RemoveAt(indexToDelete);
+                    InternetShop.ObjectsCount--;
                     if (shopsList.Count == 0)
                     {
                         currentShop = null;
@@ -391,9 +392,9 @@ namespace LABA_1
                     }
                     else if (currentShop != null && indexToDelete <= shopsList.IndexOf(currentShop))
                     {
-                        currentShop = shopsList[0];
+                        currentShop = shopsList[0];            
                         DisplayCurrentShopInfo();
-                    }
+                    }    
                     UpdateObjectCount();
                     UpdateObjectsList();
                     ShowNativeMessageBox("Успех", "Объект удален", 0x40);
@@ -403,6 +404,11 @@ namespace LABA_1
             {
                 ShowNativeMessageBox("Ошибка", "Выберите объект для удаления!", 16);
             }
+        }
+
+        private void lblObjectCount_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

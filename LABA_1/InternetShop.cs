@@ -106,6 +106,13 @@ namespace LABA_1
             set { isActive = value;}
         }
 
+
+        /// <summary>
+        /// Счетчик созданных объектов
+        /// </summary>
+        public static int ObjectsCount { get; set; }
+
+
         /// <summary>
         /// Конструктор по умолчанию
         /// </summary>
@@ -118,6 +125,7 @@ namespace LABA_1
             averageCheck = 0.0;
             rating = 0.0;
             isActive = false;
+            ObjectsCount++;
         }
 
         /// <summary>
@@ -133,6 +141,7 @@ namespace LABA_1
             averageCheck = 0.0;
             rating = 0.0;
             isActive = false;
+            ObjectsCount++;
         }
 
         /// <summary>
@@ -149,6 +158,7 @@ namespace LABA_1
             averageCheck = 0.0;
             rating = 0.0;
             isActive = false;
+            ObjectsCount++;
         }
 
         /// <summary>
@@ -171,6 +181,7 @@ namespace LABA_1
             averageCheck = avgCheck;
             rating = shopRating;
             isActive = active;
+            ObjectsCount++;
         }
 
         /// <summary>
