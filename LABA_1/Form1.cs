@@ -1,5 +1,6 @@
 using System.Runtime.InteropServices;
 using System.Text.RegularExpressions;
+using System.Windows.Forms;
 
 namespace LABA_1
 {
@@ -14,17 +15,17 @@ namespace LABA_1
         /// <param name="type">Тип сообщения</param>
         /// <returns></returns>
         [DllImport("user32.dll", CharSet = CharSet.Auto)]
-        public static extern int MessageBox(IntPtr hWnd, string text, string caption, uint type);
+        private static extern int MessageBox(IntPtr hWnd, string text, string caption, uint type);
 
         /// <summary>
         /// Регулярное выражение для проверки на корректность ввода имени
         /// </summary>
-        string pattern1 = @"^(?!\d+$)(?!.*\s{2})[A-Za-zА-Яа-яЁё0-9&""' -]{2,15}$";
+        private string pattern1 = @"^(?!\d+$)(?!.*\s{2})[A-Za-zА-Яа-яЁё0-9&""' -]{2,15}$";
 
         /// <summary>
         /// Регулярное выражение для проверки на корректность ввода адреса
         /// </summary>
-        string pattern2 = @"^(?!\d+$)(?!.*\s{2})[A-Za-zА-Яа-яЁё0-9&""'., -]{2,40}$";
+        private string pattern2 = @"^(?!\d+$)(?!.*\s{2})[A-Za-zА-Яа-яЁё0-9&""'., -]{2,40}$";
 
         /// <summary>
         /// Текущий активный объект интернет-магазина
@@ -467,8 +468,19 @@ namespace LABA_1
             }
         }
 
+        /// <summary>
+        /// Сброс значений полей
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void button2_Click(object sender, EventArgs e)
         {
+            textBox1.Text = "";
+            textBox2.Text = "";
+            numericUpDown1.Value = 0;
+            numericUpDown2.Value = 0;
+            numericUpDown3.Value = 0.00m;
+            numericUpDown4.Value = 0.0m;
             comboBox1.SelectedIndex = -1;
         }
     }
