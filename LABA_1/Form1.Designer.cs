@@ -56,6 +56,7 @@
             btnClear = new Button();
             groupBoxInput = new GroupBox();
             groupBoxStatus = new GroupBox();
+            resetButton = new Button();
             btnBack = new Button();
             objectFields = new ComboBox();
             label10 = new Label();
@@ -68,7 +69,6 @@
             btnSwitchToSelected = new Button();
             btnDeleteObject = new Button();
             exceptionButton = new Button();
-            resetButton = new Button();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)numericUpDown1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)numericUpDown2).BeginInit();
@@ -398,6 +398,18 @@
             groupBoxStatus.TabStop = false;
             groupBoxStatus.Text = "Управление";
             // 
+            // resetButton
+            // 
+            resetButton.Font = new Font("Times New Roman", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 204);
+            resetButton.Location = new Point(190, 27);
+            resetButton.Margin = new Padding(3, 4, 3, 4);
+            resetButton.Name = "resetButton";
+            resetButton.Size = new Size(140, 35);
+            resetButton.TabIndex = 17;
+            resetButton.Text = "Сбросить поля";
+            resetButton.UseVisualStyleBackColor = true;
+            resetButton.Click += button2_Click;
+            // 
             // btnBack
             // 
             btnBack.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
@@ -481,11 +493,11 @@
             // lblCurrentObject
             // 
             lblCurrentObject.AutoSize = true;
-            lblCurrentObject.Font = new Font("Times New Roman", 9.75F, FontStyle.Italic, GraphicsUnit.Point, 204);
+            lblCurrentObject.Font = new Font("Times New Roman", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 204);
             lblCurrentObject.ForeColor = Color.Black;
             lblCurrentObject.Location = new Point(10, 25);
             lblCurrentObject.Name = "lblCurrentObject";
-            lblCurrentObject.Size = new Size(215, 19);
+            lblCurrentObject.Size = new Size(226, 19);
             lblCurrentObject.TabIndex = 0;
             lblCurrentObject.Text = "Текущий объект: не выбран";
             // 
@@ -533,18 +545,6 @@
             exceptionButton.Text = "Сгенерировать исключение";
             exceptionButton.UseVisualStyleBackColor = true;
             exceptionButton.Click += exceptionButton_Click;
-            // 
-            // resetButton
-            // 
-            resetButton.Font = new Font("Times New Roman", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 204);
-            resetButton.Location = new Point(189, 27);
-            resetButton.Margin = new Padding(3, 4, 3, 4);
-            resetButton.Name = "resetButton";
-            resetButton.Size = new Size(140, 35);
-            resetButton.TabIndex = 17;
-            resetButton.Text = "Сброс";
-            resetButton.UseVisualStyleBackColor = true;
-            resetButton.Click += button2_Click;
             // 
             // Form1
             // 
