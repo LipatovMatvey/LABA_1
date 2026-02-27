@@ -29,10 +29,10 @@ namespace MainModuleTest
         /// Тест на проверку работу метода ToString()
         /// </summary>
         [TestMethod]
-        public void ToString_NoWork_Test()
+        public void ToString_NormalWorName_Test()
         {
             InternetShop TestObject = new InternetShop("Магнит");
-            string expected = "Интернет-магазин: NoName\r\n" +
+            string expected = $"Интернет-магазин: {TestObject.Name}\r\n" +
                 "Адрес: NoAddress\r\n" +
                 "Количество покупок: 0\r\n" +
                 "Количество товаров: 0\r\n" +
