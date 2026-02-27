@@ -279,7 +279,6 @@
             lblObjectCount.Size = new Size(188, 22);
             lblObjectCount.TabIndex = 17;
             lblObjectCount.Text = "Создано объектов: 0";
-            lblObjectCount.Click += lblObjectCount_Click;
             // 
             // groupBoxDisplay
             // 

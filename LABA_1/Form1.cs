@@ -408,10 +408,11 @@ namespace LABA_1
             }
         }
 
-        private void lblObjectCount_Click(object sender, EventArgs e)
-        {
-
-        }
+        /// <summary>
+        /// Демонстрация работы исключения
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
 
         private void exceptionButton_Click(object sender, EventArgs e)
         {
