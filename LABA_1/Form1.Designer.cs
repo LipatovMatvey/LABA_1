@@ -67,6 +67,7 @@
             cmbObjectsList = new ComboBox();
             btnSwitchToSelected = new Button();
             btnDeleteObject = new Button();
+            exceptionButton = new Button();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)numericUpDown1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)numericUpDown2).BeginInit();
@@ -80,7 +81,6 @@
             // 
             // label1
             // 
-            label1.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             label1.AutoSize = true;
             label1.BackColor = SystemColors.Highlight;
             label1.Font = new Font("Times New Roman", 12F, FontStyle.Bold);
@@ -93,22 +93,22 @@
             // 
             // panel1
             // 
-            panel1.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            panel1.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             panel1.BackColor = SystemColors.Highlight;
             panel1.Controls.Add(label2);
             panel1.Controls.Add(label1);
             panel1.Location = new Point(0, 0);
             panel1.Name = "panel1";
-            panel1.Size = new Size(1013, 100);
+            panel1.Size = new Size(1048, 100);
             panel1.TabIndex = 1;
             // 
             // label2
             // 
-            label2.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            label2.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             label2.AutoSize = true;
             label2.Font = new Font("Times New Roman", 12F, FontStyle.Bold);
             label2.ForeColor = SystemColors.ButtonFace;
-            label2.Location = new Point(501, 20);
+            label2.Location = new Point(536, 20);
             label2.Name = "label2";
             label2.Size = new Size(258, 69);
             label2.TabIndex = 1;
@@ -123,10 +123,11 @@
             button1.TabIndex = 2;
             button1.Text = "Создать объект";
             button1.UseVisualStyleBackColor = true;
-            button1.Click += CreateObject;
+            button1.Click += Button1_Click;
             // 
             // textBox1
             // 
+            textBox1.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             textBox1.Font = new Font("Times New Roman", 10F);
             textBox1.Location = new Point(170, 27);
             textBox1.Name = "textBox1";
@@ -155,6 +156,7 @@
             // 
             // textBox2
             // 
+            textBox2.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             textBox2.Font = new Font("Times New Roman", 10F);
             textBox2.Location = new Point(170, 83);
             textBox2.Name = "textBox2";
@@ -173,6 +175,7 @@
             // 
             // numericUpDown1
             // 
+            numericUpDown1.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             numericUpDown1.Font = new Font("Times New Roman", 10F);
             numericUpDown1.Location = new Point(170, 123);
             numericUpDown1.Maximum = new decimal(new int[] { 1000000, 0, 0, 0 });
@@ -192,6 +195,7 @@
             // 
             // numericUpDown2
             // 
+            numericUpDown2.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             numericUpDown2.Font = new Font("Times New Roman", 10F);
             numericUpDown2.Location = new Point(170, 168);
             numericUpDown2.Maximum = new decimal(new int[] { 1000000, 0, 0, 0 });
@@ -211,6 +215,7 @@
             // 
             // numericUpDown3
             // 
+            numericUpDown3.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             numericUpDown3.DecimalPlaces = 2;
             numericUpDown3.Font = new Font("Times New Roman", 10F);
             numericUpDown3.Increment = new decimal(new int[] { 1, 0, 0, 65536 });
@@ -232,6 +237,7 @@
             // 
             // numericUpDown4
             // 
+            numericUpDown4.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             numericUpDown4.DecimalPlaces = 1;
             numericUpDown4.Font = new Font("Times New Roman", 10F);
             numericUpDown4.Increment = new decimal(new int[] { 1, 0, 0, 65536 });
@@ -253,6 +259,7 @@
             // 
             // comboBox1
             // 
+            comboBox1.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             comboBox1.DropDownStyle = ComboBoxStyle.DropDownList;
             comboBox1.Font = new Font("Times New Roman", 10F);
             comboBox1.FormattingEnabled = true;
@@ -264,7 +271,6 @@
             // 
             // lblObjectCount
             // 
-            lblObjectCount.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             lblObjectCount.AutoSize = true;
             lblObjectCount.Font = new Font("Times New Roman", 11F, FontStyle.Bold);
             lblObjectCount.ForeColor = Color.Blue;
@@ -273,13 +279,14 @@
             lblObjectCount.Size = new Size(188, 22);
             lblObjectCount.TabIndex = 17;
             lblObjectCount.Text = "Создано объектов: 0";
+            lblObjectCount.Click += lblObjectCount_Click;
             // 
             // groupBoxDisplay
             // 
             groupBoxDisplay.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             groupBoxDisplay.Controls.Add(txtDisplayInfo);
             groupBoxDisplay.Font = new Font("Times New Roman", 10F, FontStyle.Bold);
-            groupBoxDisplay.Location = new Point(400, 140);
+            groupBoxDisplay.Location = new Point(435, 189);
             groupBoxDisplay.Name = "groupBoxDisplay";
             groupBoxDisplay.Size = new Size(421, 349);
             groupBoxDisplay.TabIndex = 20;
@@ -302,7 +309,7 @@
             // 
             btnShowInfo.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             btnShowInfo.Font = new Font("Times New Roman", 10F);
-            btnShowInfo.Location = new Point(400, 500);
+            btnShowInfo.Location = new Point(435, 549);
             btnShowInfo.Name = "btnShowInfo";
             btnShowInfo.Size = new Size(146, 35);
             btnShowInfo.TabIndex = 21;
@@ -313,7 +320,7 @@
             // 
             btnShowField.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             btnShowField.Font = new Font("Times New Roman", 10F);
-            btnShowField.Location = new Point(553, 500);
+            btnShowField.Location = new Point(589, 549);
             btnShowField.Name = "btnShowField";
             btnShowField.Size = new Size(155, 35);
             btnShowField.TabIndex = 22;
@@ -324,7 +331,7 @@
             // 
             btnModifyFields.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             btnModifyFields.Font = new Font("Times New Roman", 10F);
-            btnModifyFields.Location = new Point(553, 550);
+            btnModifyFields.Location = new Point(589, 599);
             btnModifyFields.Name = "btnModifyFields";
             btnModifyFields.Size = new Size(155, 35);
             btnModifyFields.TabIndex = 23;
@@ -335,7 +342,7 @@
             // 
             btnShowHex.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             btnShowHex.Font = new Font("Times New Roman", 10F);
-            btnShowHex.Location = new Point(400, 551);
+            btnShowHex.Location = new Point(435, 600);
             btnShowHex.Name = "btnShowHex";
             btnShowHex.Size = new Size(146, 35);
             btnShowHex.TabIndex = 24;
@@ -346,7 +353,7 @@
             // 
             btnClear.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             btnClear.Font = new Font("Times New Roman", 10F);
-            btnClear.Location = new Point(400, 592);
+            btnClear.Location = new Point(435, 641);
             btnClear.Name = "btnClear";
             btnClear.Size = new Size(120, 35);
             btnClear.TabIndex = 26;
@@ -355,7 +362,7 @@
             // 
             // groupBoxInput
             // 
-            groupBoxInput.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            groupBoxInput.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             groupBoxInput.Controls.Add(label9);
             groupBoxInput.Controls.Add(label3);
             groupBoxInput.Controls.Add(comboBox1);
@@ -371,7 +378,7 @@
             groupBoxInput.Controls.Add(label8);
             groupBoxInput.Controls.Add(numericUpDown4);
             groupBoxInput.Font = new Font("Times New Roman", 10F, FontStyle.Bold);
-            groupBoxInput.Location = new Point(21, 140);
+            groupBoxInput.Location = new Point(21, 189);
             groupBoxInput.Name = "groupBoxInput";
             groupBoxInput.Size = new Size(350, 349);
             groupBoxInput.TabIndex = 18;
@@ -380,10 +387,10 @@
             // 
             // groupBoxStatus
             // 
-            groupBoxStatus.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            groupBoxStatus.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             groupBoxStatus.Controls.Add(button1);
             groupBoxStatus.Font = new Font("Times New Roman", 10F, FontStyle.Bold);
-            groupBoxStatus.Location = new Point(21, 500);
+            groupBoxStatus.Location = new Point(21, 549);
             groupBoxStatus.Name = "groupBoxStatus";
             groupBoxStatus.Size = new Size(350, 85);
             groupBoxStatus.TabIndex = 19;
@@ -396,7 +403,7 @@
             btnBack.BackColor = Color.White;
             btnBack.Font = new Font("Times New Roman", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 204);
             btnBack.ForeColor = Color.Black;
-            btnBack.Location = new Point(886, 595);
+            btnBack.Location = new Point(921, 644);
             btnBack.Name = "btnBack";
             btnBack.Size = new Size(114, 39);
             btnBack.TabIndex = 27;
@@ -410,7 +417,7 @@
             objectFields.DropDownStyle = ComboBoxStyle.DropDownList;
             objectFields.FormattingEnabled = true;
             objectFields.Items.AddRange(new object[] { "name", "address", "purchaseCount", "productCount", "averageCheck", "rating", "isActive" });
-            objectFields.Location = new Point(876, 507);
+            objectFields.Location = new Point(911, 556);
             objectFields.Margin = new Padding(3, 4, 3, 4);
             objectFields.Name = "objectFields";
             objectFields.Size = new Size(125, 28);
@@ -427,7 +434,7 @@
             // newFieldValue
             // 
             newFieldValue.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            newFieldValue.Location = new Point(876, 559);
+            newFieldValue.Location = new Point(911, 608);
             newFieldValue.Margin = new Padding(3, 4, 3, 4);
             newFieldValue.Name = "newFieldValue";
             newFieldValue.Size = new Size(125, 27);
@@ -438,7 +445,7 @@
             label11.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             label11.AutoSize = true;
             label11.Font = new Font("Times New Roman", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 204);
-            label11.Location = new Point(730, 558);
+            label11.Location = new Point(766, 607);
             label11.Name = "label11";
             label11.Size = new Size(137, 20);
             label11.TabIndex = 33;
@@ -449,7 +456,7 @@
             label12.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             label12.AutoSize = true;
             label12.Font = new Font("Times New Roman", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 204);
-            label12.Location = new Point(730, 507);
+            label12.Location = new Point(766, 556);
             label12.Name = "label12";
             label12.Size = new Size(133, 20);
             label12.TabIndex = 34;
@@ -457,13 +464,13 @@
             // 
             // groupBoxObjects
             // 
-            groupBoxObjects.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            groupBoxObjects.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             groupBoxObjects.Controls.Add(lblCurrentObject);
             groupBoxObjects.Controls.Add(cmbObjectsList);
             groupBoxObjects.Controls.Add(btnSwitchToSelected);
             groupBoxObjects.Controls.Add(btnDeleteObject);
             groupBoxObjects.Font = new Font("Times New Roman", 10F, FontStyle.Bold);
-            groupBoxObjects.Location = new Point(21, 590);
+            groupBoxObjects.Location = new Point(21, 639);
             groupBoxObjects.Name = "groupBoxObjects";
             groupBoxObjects.Size = new Size(350, 100);
             groupBoxObjects.TabIndex = 35;
@@ -473,30 +480,31 @@
             // lblCurrentObject
             // 
             lblCurrentObject.AutoSize = true;
-            lblCurrentObject.Font = new Font("Times New Roman", 9F, FontStyle.Italic);
+            lblCurrentObject.Font = new Font("Times New Roman", 9.75F, FontStyle.Italic, GraphicsUnit.Point, 204);
             lblCurrentObject.ForeColor = Color.Black;
             lblCurrentObject.Location = new Point(10, 25);
             lblCurrentObject.Name = "lblCurrentObject";
-            lblCurrentObject.Size = new Size(193, 17);
+            lblCurrentObject.Size = new Size(215, 19);
             lblCurrentObject.TabIndex = 0;
             lblCurrentObject.Text = "Текущий объект: не выбран";
             // 
             // cmbObjectsList
             // 
+            cmbObjectsList.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             cmbObjectsList.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbObjectsList.Font = new Font("Times New Roman", 10F);
             cmbObjectsList.FormattingEnabled = true;
-            cmbObjectsList.Location = new Point(10, 50);
+            cmbObjectsList.Location = new Point(10, 51);
             cmbObjectsList.Name = "cmbObjectsList";
-            cmbObjectsList.Size = new Size(200, 27);
+            cmbObjectsList.Size = new Size(201, 27);
             cmbObjectsList.TabIndex = 1;
             // 
             // btnSwitchToSelected
             // 
             btnSwitchToSelected.Font = new Font("Times New Roman", 9F);
-            btnSwitchToSelected.Location = new Point(238, 18);
+            btnSwitchToSelected.Location = new Point(238, 19);
             btnSwitchToSelected.Name = "btnSwitchToSelected";
-            btnSwitchToSelected.Size = new Size(91, 30);
+            btnSwitchToSelected.Size = new Size(91, 29);
             btnSwitchToSelected.TabIndex = 2;
             btnSwitchToSelected.Text = "Выбрать";
             btnSwitchToSelected.Click += btnSwitchToSelected_Click;
@@ -505,19 +513,32 @@
             // 
             btnDeleteObject.BackColor = Color.White;
             btnDeleteObject.Font = new Font("Times New Roman", 9F);
-            btnDeleteObject.Location = new Point(238, 54);
+            btnDeleteObject.Location = new Point(238, 53);
             btnDeleteObject.Name = "btnDeleteObject";
-            btnDeleteObject.Size = new Size(91, 30);
+            btnDeleteObject.Size = new Size(91, 29);
             btnDeleteObject.TabIndex = 3;
             btnDeleteObject.Text = "Удалить";
             btnDeleteObject.UseVisualStyleBackColor = false;
             btnDeleteObject.Click += btnDeleteObject_Click;
             // 
+            // exceptionButton
+            // 
+            exceptionButton.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            exceptionButton.Location = new Point(562, 644);
+            exceptionButton.Margin = new Padding(3, 4, 3, 4);
+            exceptionButton.Name = "exceptionButton";
+            exceptionButton.Size = new Size(244, 32);
+            exceptionButton.TabIndex = 36;
+            exceptionButton.Text = "Сгенерировать исключение";
+            exceptionButton.UseVisualStyleBackColor = true;
+            exceptionButton.Click += exceptionButton_Click;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1013, 710);
+            ClientSize = new Size(1048, 759);
+            Controls.Add(exceptionButton);
             Controls.Add(groupBoxObjects);
             Controls.Add(label12);
             Controls.Add(label11);
@@ -535,7 +556,7 @@
             Controls.Add(groupBoxInput);
             Controls.Add(lblObjectCount);
             Controls.Add(panel1);
-            MinimumSize = new Size(836, 687);
+            MinimumSize = new Size(836, 684);
             Name = "Form1";
             Text = "Интернет-магазин (Вариант 11)";
             panel1.ResumeLayout(false);
@@ -595,5 +616,6 @@
         private Button btnSwitchToSelected;
         private Button btnDeleteObject;
         private Label lblCurrentObject;
+        private Button exceptionButton;
     }
 }

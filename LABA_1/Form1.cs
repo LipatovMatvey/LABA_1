@@ -33,6 +33,8 @@ namespace LABA_1
         {
             InitializeComponent();
             shopsList = new List<InternetShop>();
+            ShowNativeMessageBox("Приветствие", "Лабораторная работа № 1. Класс. \n\r \"Статические члены класса. " +
+                "Обработка исключений\" \n\r Группа: 24ВП2 \r\n Бригада 11: Кузнецов Н.Д. Липатов М.В.", 0x40);
         }
 
         /// <summary>
@@ -50,7 +52,7 @@ namespace LABA_1
         /// </summary>
         /// <param name="sender">Объект, вызвавший событие</param>
         /// <param name="e">Аргументы события</param>
-        private void CreateObject(object sender, EventArgs e)
+        private void Button1_Click(object sender, EventArgs e)
         {
             try
             {
@@ -172,7 +174,7 @@ namespace LABA_1
             }
             string hexView = currentShop.GetProductCountHex();
             txtDisplayInfo.Text = hexView;
-            ShowNativeMessageBox("Успех", "Значение поля отображено!", 0x40);
+            ShowNativeMessageBox("Успех", "Значение поля отображено!", 0);
         }
 
         /// <summary>
@@ -403,6 +405,30 @@ namespace LABA_1
             else
             {
                 ShowNativeMessageBox("Ошибка", "Выберите объект для удаления!", 16);
+            }
+        }
+
+        private void lblObjectCount_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void exceptionButton_Click(object sender, EventArgs e)
+        {
+            int a = 10;
+            int b = 0;
+            try
+            {
+                if (b == 0)
+                {
+                    throw new MyDivideByZeroException("Ошибка деления на 0. DivisionByZeroException", 
+                        $"Исключение было сгенерировано при попытке деления {a} на {b}");
+                }
+                int result = a / b;
+            }
+            catch (MyDivideByZeroException ex)
+            {
+                ShowNativeMessageBox($"{ex.Message}", $"{ex.AdditionalInfo}", 0x00000010);
             }
         }
     }
