@@ -17,6 +17,16 @@ namespace LABA_1
         public static extern int MessageBox(IntPtr hWnd, string text, string caption, uint type);
 
         /// <summary>
+        /// Регулярное выражение для проверки на корректность ввода имени
+        /// </summary>
+        string pattern1 = @"^(?!\d+$)(?!.*\s{2})[A-Za-zА-Яа-яЁё0-9&""' -]{2,15}$";
+
+        /// <summary>
+        /// Регулярное выражение для проверки на корректность ввода адреса
+        /// </summary>
+        string pattern2 = @"^(?!\d+$)(?!.*\s{2})[A-Za-zА-Яа-яЁё0-9&""'., -]{2,40}$";
+
+        /// <summary>
         /// Текущий активный объект интернет-магазина
         /// </summary>
         private InternetShop currentShop;
@@ -56,33 +66,59 @@ namespace LABA_1
         {
             try
             {
-                string name = textBox1.Text;
-                string address = textBox2.Text;
+                string name = textBox1.Text.Trim();
+                string address = textBox2.Text.Trim();
                 int purchases = (int)numericUpDown1.Value;
                 int products = (int)numericUpDown2.Value;
                 double avgCheck = (double)numericUpDown3.Value;
                 double rating = (double)numericUpDown4.Value;
-                bool active = comboBox1.SelectedIndex == 0;
+                int active = comboBox1.SelectedIndex;
                 if (purchases == 0 && products == 0 && avgCheck == 0 && rating == 0 &&
-                    active == false && string.IsNullOrEmpty(name) && string.IsNullOrEmpty(address))
+                    active == -1 && string.IsNullOrEmpty(name) && string.IsNullOrEmpty(address))
                 {
                     currentShop = new InternetShop();
                     ShowNativeMessageBox("Успех", $"Объект создан с конструктором по умолчанию", 0);
                 }
                 else if (string.IsNullOrEmpty(address) && purchases == 0 &&
-                         products == 0 && avgCheck == 0 && rating == 0 && active == false)
+                         products == 0 && avgCheck == 0 && rating == 0 && active == -1)
                 {
+                    if (!Regex.IsMatch(name, pattern1))
+                    {
+                        ShowNativeMessageBox("Ошибка", "Имя магазина некорректно", 16);
+                        return;
+                    }
                     currentShop = new InternetShop(name);
                     ShowNativeMessageBox("Успех", $"Объект создан с конструктором с одним параметром: {name}", 0);
                 }
-                else if (purchases == 0 && products == 0 && avgCheck == 0 && rating == 0 && active == false)
+                else if (purchases == 0 && products == 0 && avgCheck == 0 && rating == 0 && active == -1)
                 {
+                    if (!Regex.IsMatch(name, pattern1))
+                    {
+                        ShowNativeMessageBox("Ошибка", "Имя магазина некорректно", 16);
+                        return;
+                    }
+                    if (!Regex.IsMatch(address, pattern2))
+                    {
+                        ShowNativeMessageBox("Ошибка", "Адрес магазина некорректен", 16);
+                        return;
+                    }
                     currentShop = new InternetShop(name, address);
                     ShowNativeMessageBox("Успех", $"Объект создан с конструктором с двумя параметрами", 0);
                 }
                 else
                 {
-                    currentShop = new InternetShop(name, address, purchases, products, avgCheck, rating, active);
+                    if (!Regex.IsMatch(name, pattern1))
+                    {
+                        ShowNativeMessageBox("Ошибка", "Имя магазина некорректно", 16);
+                        return;
+                    }
+                    if (!Regex.IsMatch(address, pattern2))
+                    {
+                        ShowNativeMessageBox("Ошибка", "Адрес магазина некорректен", 16);
+                        return;
+                    }
+                    bool isActive = active == 0 ? true : false;
+                    currentShop = new InternetShop(name, address, purchases, products, avgCheck, rating, isActive);
                     ShowNativeMessageBox("Успех", "Объект создан с конструктором со всеми параметрами", 0);
                 }
                 shopsList.Add(currentShop);
@@ -263,7 +299,7 @@ namespace LABA_1
                 ShowNativeMessageBox("Ошибка", "Выберите поле для изменения!", 16);
                 return;
             }
-            string newValue = newFieldValue.Text;
+            string newValue = newFieldValue.Text.Trim();
             if (newValue == "")
             {
                 ShowNativeMessageBox("Ошибка", "Значение не может быть пустым", 16);
@@ -272,7 +308,6 @@ namespace LABA_1
             switch (selectedField)
             {
                 case "name":
-                    string pattern1 = @"^(?!\d+$)(?!.*\s{2})[A-Za-zА-Яа-яЁё0-9&""' -]{2,15}$";
                     if (!Regex.IsMatch(newValue, pattern1))
                     {
                         ShowNativeMessageBox("Ошибка", "Имя магазина некорректно", 16);
@@ -281,7 +316,6 @@ namespace LABA_1
                     currentShop.Name = newValue;
                     break;
                 case "address":
-                    string pattern2 = @"^(?!\d+$)(?!.*\s{2})[A-Za-zА-Яа-яЁё0-9&""'., -]{2,40}$";
                     if (!Regex.IsMatch(newValue, pattern2))
                     {
                         ShowNativeMessageBox("Ошибка", "Адрес некорректен", 16);
@@ -397,7 +431,6 @@ namespace LABA_1
                         currentShop = shopsList[0];
                         DisplayCurrentShopInfo();
                     }
-                    InternetShop.ObjectsCount--;
                     UpdateObjectCount();
                     UpdateObjectsList();
                     ShowNativeMessageBox("Успех", "Объект удален", 0x40);
@@ -422,7 +455,7 @@ namespace LABA_1
             {
                 if (b == 0)
                 {
-                    throw new MyDivideByZeroException("Ошибка деления на 0. DivisionByZeroException", 
+                    throw new MyDivideByZeroException("Ошибка деления на 0. DivisionByZeroException",
                         $"Исключение было сгенерировано при попытке деления {a} на {b}");
                 }
                 int result = a / b;
@@ -431,6 +464,16 @@ namespace LABA_1
             {
                 ShowNativeMessageBox($"{ex.Message}", $"{ex.AdditionalInfo}", 0x00000010);
             }
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            comboBox1.SelectedIndex = -1;
         }
     }
 }
