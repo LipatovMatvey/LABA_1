@@ -68,6 +68,7 @@
             btnSwitchToSelected = new Button();
             btnDeleteObject = new Button();
             exceptionButton = new Button();
+            resetButton = new Button();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)numericUpDown1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)numericUpDown2).BeginInit();
@@ -268,6 +269,7 @@
             comboBox1.Name = "comboBox1";
             comboBox1.Size = new Size(159, 27);
             comboBox1.TabIndex = 16;
+            comboBox1.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
             // 
             // lblObjectCount
             // 
@@ -522,9 +524,8 @@
             // 
             // exceptionButton
             // 
-            exceptionButton.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            exceptionButton.Location = new Point(562, 644);
-            exceptionButton.Margin = new Padding(3, 4, 3, 4);
+            exceptionButton.Font = new Font("Times New Roman", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            exceptionButton.Location = new Point(492, 483);
             exceptionButton.Name = "exceptionButton";
             exceptionButton.Size = new Size(244, 32);
             exceptionButton.TabIndex = 36;
@@ -532,11 +533,23 @@
             exceptionButton.UseVisualStyleBackColor = true;
             exceptionButton.Click += exceptionButton_Click;
             // 
+            // resetButton
+            // 
+            resetButton.Font = new Font("Times New Roman", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 204);
+            resetButton.Location = new Point(326, 373);
+            resetButton.Name = "resetButton";
+            resetButton.Size = new Size(49, 25);
+            resetButton.TabIndex = 17;
+            resetButton.Text = "Сброс";
+            resetButton.UseVisualStyleBackColor = true;
+            resetButton.Click += button2_Click;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1048, 759);
+            ClientSize = new Size(917, 569);
+            Controls.Add(resetButton);
             Controls.Add(exceptionButton);
             Controls.Add(groupBoxObjects);
             Controls.Add(label12);
@@ -616,5 +629,6 @@
         private Button btnDeleteObject;
         private Label lblCurrentObject;
         private Button exceptionButton;
+        private Button resetButton;
     }
 }
