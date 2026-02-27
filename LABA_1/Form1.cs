@@ -466,5 +466,10 @@ namespace LABA_1
                 ShowNativeMessageBox($"{ex.Message}", $"{ex.AdditionalInfo}", 0x00000010);
             }
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            comboBox1.SelectedIndex = -1;
+        }
     }
 }
