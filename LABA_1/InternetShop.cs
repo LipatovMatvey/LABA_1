@@ -19,7 +19,7 @@ namespace LABA_1
         public string Name
         {
             get { return name; }
-            set { name = value; }
+            set { this.name = value; }
         }
 
         /// <summary>
@@ -33,7 +33,7 @@ namespace LABA_1
         public string Address
         {
             get { return  address; }
-            set { address = value; }
+            set { this.address = value; }
         }
 
         /// <summary>
@@ -47,7 +47,7 @@ namespace LABA_1
         public int PurchaseCount
         {
             get { return purchaseCount;}
-            set { purchaseCount = value; }
+            set { this.purchaseCount = value; }
         }
 
         /// <summary>
@@ -61,7 +61,7 @@ namespace LABA_1
         public int ProductCount
         {
             get { return productCount;}
-            set { productCount = value; }
+            set { this.productCount = value; }
         }
 
         /// <summary>
@@ -75,7 +75,7 @@ namespace LABA_1
         public double AverageCheck
         {
             get { return averageCheck; }
-            set { averageCheck = value; }
+            set { this.averageCheck = value; }
         }
 
         /// <summary>
@@ -89,7 +89,7 @@ namespace LABA_1
         public double Rating
         {
             get { return rating; }
-            set { rating = value; }
+            set { this.rating = value; }
         }
 
         /// <summary>
@@ -103,9 +103,12 @@ namespace LABA_1
         public bool IsActive
         {
             get { return isActive;}
-            set { isActive = value;}
+            set { this.isActive = value;}
         }
 
+        /// <summary>
+        /// Счётчик объектов
+        /// </summary>
         public static int CountObject = 0;
 
         /// <summary>
@@ -118,13 +121,13 @@ namespace LABA_1
         /// </summary>
         public InternetShop()
         {
-            name = "NoName";
-            address = "NoAddress";
-            purchaseCount = 0;
-            productCount = 0;
-            averageCheck = 0.0;
-            rating = 0.0;
-            isActive = false;
+            this.name = "NoName";
+            this.address = "NoAddress";
+            this.purchaseCount = 0;
+            this.productCount = 0;
+            this.averageCheck = 0.0;
+            this.rating = 0.0;
+            this.isActive = false;
             CountObject++;
         }
 
@@ -135,12 +138,12 @@ namespace LABA_1
         public InternetShop(string name)
         {
             this.name = name;
-            address = "NoAddress";
-            purchaseCount = 0;
-            productCount = 0;
-            averageCheck = 0.0;
-            rating = 0.0;
-            isActive = false;
+            this.address = "NoAddress";
+            this.purchaseCount = 0;
+            this.productCount = 0;
+            this.averageCheck = 0.0;
+            this.rating = 0.0;
+            this.isActive = false;
             CountObject++;
         }
 
@@ -153,11 +156,11 @@ namespace LABA_1
         {
             this.name = name;
             this.address = address;
-            purchaseCount = 0;
-            productCount = 0;
-            averageCheck = 0.0;
-            rating = 0.0;
-            isActive = false;
+            this.purchaseCount = 0;
+            this.productCount = 0;
+            this.averageCheck = 0.0;
+            this.rating = 0.0;
+            this.isActive = false;
             CountObject++;
         }
 
@@ -176,11 +179,11 @@ namespace LABA_1
         {
             this.name = name;
             this.address = address;
-            purchaseCount = purchases;
-            productCount = products;
-            averageCheck = avgCheck;
-            rating = shopRating;
-            isActive = active;
+            this.purchaseCount = purchases;
+            this.productCount = products;
+            this.averageCheck = avgCheck;
+            this.rating = shopRating;
+            this.isActive = active;
             CountObject++;
         }
 
