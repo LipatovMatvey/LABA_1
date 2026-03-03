@@ -7,17 +7,6 @@ namespace LABA_1
     public partial class Form1 : Form
     {
         /// <summary>
-        /// Импорт функции MessageBox из библиотеки user32.dll
-        /// </summary>
-        /// <param name="hWnd">Дескриптор родительского окна</param>
-        /// <param name="text">Текст сообщения, отображаемый в окне</param>
-        /// <param name="caption">Заголовок окна сообщения</param>
-        /// <param name="type">Тип сообщения</param>
-        /// <returns></returns>
-        [DllImport("user32.dll", CharSet = CharSet.Auto)]
-        private static extern int MessageBox(IntPtr hWnd, string text, string caption, uint type);
-
-        /// <summary>
         /// Регулярное выражение для проверки на корректность ввода имени
         /// </summary>
         private string pattern1 = @"^(?!\d+$)(?!.*\s{2})[A-Za-zА-Яа-яЁё0-9&""' -]{2,15}$";
@@ -44,7 +33,7 @@ namespace LABA_1
         {
             InitializeComponent();
             shopsList = new List<InternetShop>();
-            ShowNativeMessageBox("Приветствие", "Лабораторная работа № 1. Класс. \n\r \"Статические члены класса. " +
+            BoxMessage.ShowNativeMessageBox("Приветствие", "Лабораторная работа № 1. Класс. \n\r \"Статические члены класса. " +
                 "Обработка исключений\" \n\r Группа: 24ВП2 \r\n Бригада 11: Кузнецов Н.Д. Липатов М.В.", 0x40);
         }
 
@@ -78,49 +67,49 @@ namespace LABA_1
                     active == -1 && string.IsNullOrEmpty(name) && string.IsNullOrEmpty(address))
                 {
                     currentShop = new InternetShop();
-                    ShowNativeMessageBox("Успех", $"Объект создан с конструктором по умолчанию", 0);
+                    BoxMessage.ShowNativeMessageBox("Успех", $"Объект создан с конструктором по умолчанию", 0);
                 }
                 else if (string.IsNullOrEmpty(address) && purchases == 0 &&
                          products == 0 && avgCheck == 0 && rating == 0 && active == -1)
                 {
                     if (!Regex.IsMatch(name, pattern1))
                     {
-                        ShowNativeMessageBox("Ошибка", "Имя магазина некорректно", 16);
+                        BoxMessage.ShowNativeMessageBox("Ошибка", "Имя магазина некорректно", 16);
                         return;
                     }
                     currentShop = new InternetShop(name);
-                    ShowNativeMessageBox("Успех", $"Объект создан с конструктором с одним параметром: {name}", 0);
+                    BoxMessage.ShowNativeMessageBox("Успех", $"Объект создан с конструктором с одним параметром: {name}", 0);
                 }
                 else if (purchases == 0 && products == 0 && avgCheck == 0 && rating == 0 && active == -1)
                 {
                     if (!Regex.IsMatch(name, pattern1))
                     {
-                        ShowNativeMessageBox("Ошибка", "Имя магазина некорректно", 16);
+                        BoxMessage.ShowNativeMessageBox("Ошибка", "Имя магазина некорректно", 16);
                         return;
                     }
                     if (!Regex.IsMatch(address, pattern2))
                     {
-                        ShowNativeMessageBox("Ошибка", "Адрес магазина некорректен", 16);
+                        BoxMessage.ShowNativeMessageBox("Ошибка", "Адрес магазина некорректен", 16);
                         return;
                     }
                     currentShop = new InternetShop(name, address);
-                    ShowNativeMessageBox("Успех", $"Объект создан с конструктором с двумя параметрами", 0);
+                    BoxMessage.ShowNativeMessageBox("Успех", $"Объект создан с конструктором с двумя параметрами", 0);
                 }
                 else
                 {
                     if (!Regex.IsMatch(name, pattern1))
                     {
-                        ShowNativeMessageBox("Ошибка", "Имя магазина некорректно", 16);
+                        BoxMessage.ShowNativeMessageBox("Ошибка", "Имя магазина некорректно", 16);
                         return;
                     }
                     if (!Regex.IsMatch(address, pattern2))
                     {
-                        ShowNativeMessageBox("Ошибка", "Адрес магазина некорректен", 16);
+                        BoxMessage.ShowNativeMessageBox("Ошибка", "Адрес магазина некорректен", 16);
                         return;
                     }
                     bool isActive = active == 0 ? true : false;
                     currentShop = new InternetShop(name, address, purchases, products, avgCheck, rating, isActive);
-                    ShowNativeMessageBox("Успех", "Объект создан с конструктором со всеми параметрами", 0);
+                    BoxMessage.ShowNativeMessageBox("Успех", "Объект создан с конструктором со всеми параметрами", 0);
                 }
                 shopsList.Add(currentShop);
                 UpdateObjectCount();
@@ -129,20 +118,8 @@ namespace LABA_1
             }
             catch (Exception ex)
             {
-                ShowNativeMessageBox("Ошибка", $"Ошибка создания: {ex.Message}", 16);
+                BoxMessage.ShowNativeMessageBox("Ошибка", $"Ошибка создания: {ex.Message}", 16);
             }
-        }
-
-        /// <summary>
-        /// Обертка для вызова нативного MessageBox
-        /// </summary>
-        /// <param name="caption">Заголовок окна</param>
-        /// <param name="text">Текст сообщения</param>
-        /// <param name="type">Тип сообщения</param>
-        /// <returns></returns>
-        private int ShowNativeMessageBox(string caption, string text, uint type)
-        {
-            return MessageBox(IntPtr.Zero, text, caption, type);
         }
 
         /// <summary>
@@ -190,7 +167,7 @@ namespace LABA_1
         {
             if (currentShop == null)
             {
-                ShowNativeMessageBox("Ошибка", "Сначала создайте объект!", 16);
+                BoxMessage.ShowNativeMessageBox("Ошибка", "Сначала создайте объект!", 16);
                 return;
             }
             txtDisplayInfo.Clear();
@@ -206,12 +183,12 @@ namespace LABA_1
         {
             if (currentShop == null)
             {
-                ShowNativeMessageBox("Ошибка", "Сначала создайте объект!", 16);
+                BoxMessage.ShowNativeMessageBox("Ошибка", "Сначала создайте объект!", 16);
                 return;
             }
             string hexView = currentShop.GetProductCountHex();
             txtDisplayInfo.Text = hexView;
-            ShowNativeMessageBox("Успех", "Значение поля отображено!", 0);
+            BoxMessage.ShowNativeMessageBox("Успех", "Значение поля отображено!", 0);
         }
 
         /// <summary>
@@ -223,13 +200,13 @@ namespace LABA_1
         {
             if (currentShop == null)
             {
-                ShowNativeMessageBox("Ошибка", "Сначала создайте объект! Поле не определено", 16);
+                BoxMessage.ShowNativeMessageBox("Ошибка", "Сначала создайте объект! Поле не определено", 16);
                 return;
             }
             string selectedField = objectFields.SelectedItem as string;
             if (string.IsNullOrEmpty(selectedField))
             {
-                ShowNativeMessageBox("Ошибка", "Выберите поле для отображения!", 16);
+                BoxMessage.ShowNativeMessageBox("Ошибка", "Выберите поле для отображения!", 16);
                 return;
             }
             switch (selectedField)
@@ -259,7 +236,7 @@ namespace LABA_1
                     txtDisplayInfo.Text = "Выберите поле для отображения";
                     break;
             }
-            ShowNativeMessageBox("Успех", "Значение поля отображено!", 0x40);
+            BoxMessage.ShowNativeMessageBox("Успех", "Значение поля отображено!", 0x40);
         }
 
         /// <summary>
@@ -291,19 +268,19 @@ namespace LABA_1
         {
             if (currentShop == null)
             {
-                ShowNativeMessageBox("Ошибка", "Сначала создайте объект! Поле не определено", 16);
+                BoxMessage.ShowNativeMessageBox("Ошибка", "Сначала создайте объект! Поле не определено", 16);
                 return;
             }
             string selectedField = objectFields.SelectedItem as string;
             if (string.IsNullOrEmpty(selectedField))
             {
-                ShowNativeMessageBox("Ошибка", "Выберите поле для изменения!", 16);
+                BoxMessage.ShowNativeMessageBox("Ошибка", "Выберите поле для изменения!", 16);
                 return;
             }
             string newValue = newFieldValue.Text.Trim();
             if (newValue == "")
             {
-                ShowNativeMessageBox("Ошибка", "Значение не может быть пустым", 16);
+                BoxMessage.ShowNativeMessageBox("Ошибка", "Значение не может быть пустым", 16);
                 return;
             }
             switch (selectedField)
@@ -311,7 +288,7 @@ namespace LABA_1
                 case "name":
                     if (!Regex.IsMatch(newValue, pattern1))
                     {
-                        ShowNativeMessageBox("Ошибка", "Имя магазина некорректно", 16);
+                        BoxMessage.ShowNativeMessageBox("Ошибка", "Имя магазина некорректно", 16);
                         return;
                     }
                     currentShop.Name = newValue;
@@ -319,7 +296,7 @@ namespace LABA_1
                 case "address":
                     if (!Regex.IsMatch(newValue, pattern2))
                     {
-                        ShowNativeMessageBox("Ошибка", "Адрес некорректен", 16);
+                        BoxMessage.ShowNativeMessageBox("Ошибка", "Адрес некорректен", 16);
                         return;
                     }
                     currentShop.Address = newValue;
@@ -327,7 +304,7 @@ namespace LABA_1
                 case "purchaseCount":
                     if (!int.TryParse(newValue, out int purchaseCount) || purchaseCount < 0)
                     {
-                        ShowNativeMessageBox("Ошибка", "Количество покупок должно быть целым неотрицательным числом", 16);
+                        BoxMessage.ShowNativeMessageBox("Ошибка", "Количество покупок должно быть целым неотрицательным числом", 16);
                         return;
                     }
                     currentShop.PurchaseCount = int.Parse(newValue);
@@ -335,7 +312,7 @@ namespace LABA_1
                 case "productCount":
                     if (!int.TryParse(newValue, out int productCount) || productCount < 0)
                     {
-                        ShowNativeMessageBox("Ошибка", "Количество товаров должно быть целым неотрицательным числом", 16);
+                        BoxMessage.ShowNativeMessageBox("Ошибка", "Количество товаров должно быть целым неотрицательным числом", 16);
                         return;
                     }
                     currentShop.ProductCount = int.Parse(newValue);
@@ -343,7 +320,7 @@ namespace LABA_1
                 case "averageCheck":
                     if (!double.TryParse(newValue, out double averageCheck) || averageCheck < 0)
                     {
-                        ShowNativeMessageBox("Ошибка", "Средний чек должен быть неотрицательным числом", 16);
+                        BoxMessage.ShowNativeMessageBox("Ошибка", "Средний чек должен быть неотрицательным числом", 16);
                         return;
                     }
                     currentShop.AverageCheck = double.Parse(newValue);
@@ -351,7 +328,7 @@ namespace LABA_1
                 case "rating":
                     if (!double.TryParse(newValue, out double rating) || rating < 1 || rating > 5)
                     {
-                        ShowNativeMessageBox("Ошибка", "Рейтинг должен быть числом от 1 до 5", 16);
+                        BoxMessage.ShowNativeMessageBox("Ошибка", "Рейтинг должен быть числом от 1 до 5", 16);
                         return;
                     }
                     currentShop.Rating = double.Parse(newValue);
@@ -362,7 +339,7 @@ namespace LABA_1
                         !newValue.Equals("true", StringComparison.OrdinalIgnoreCase) &&
                         !newValue.Equals("false", StringComparison.OrdinalIgnoreCase))
                     {
-                        ShowNativeMessageBox("Ошибка", "Значение может быть \"да/нет\" или \"true/false\"", 16);
+                        BoxMessage.ShowNativeMessageBox("Ошибка", "Значение может быть \"да/нет\" или \"true/false\"", 16);
                         return;
                     }
                     if (newValue.Equals("да", StringComparison.OrdinalIgnoreCase) ||
@@ -382,7 +359,7 @@ namespace LABA_1
             }
             DisplayCurrentShopInfo();
             UpdateObjectsList();
-            ShowNativeMessageBox("Успех", "Значение поля изменено!", 0x40);
+            BoxMessage.ShowNativeMessageBox("Успех", "Значение поля изменено!", 0x40);
             newFieldValue.Clear();
         }
 
@@ -398,11 +375,11 @@ namespace LABA_1
                 currentShop = shopsList[cmbObjectsList.SelectedIndex];
                 UpdateObjectsList();
                 DisplayCurrentShopInfo();
-                ShowNativeMessageBox("Успех", $"Переключено на объект: {currentShop.Name}", 0x40);
+                BoxMessage.ShowNativeMessageBox("Успех", $"Переключено на объект: {currentShop.Name}", 0x40);
             }
             else
             {
-                ShowNativeMessageBox("Ошибка", "Выберите объект из списка!", 16);
+                BoxMessage.ShowNativeMessageBox("Ошибка", "Выберите объект из списка!", 16);
             }
         }
 
@@ -417,7 +394,7 @@ namespace LABA_1
             {
                 int indexToDelete = cmbObjectsList.SelectedIndex;
                 string deletedName = shopsList[indexToDelete].Name;
-                int result = ShowNativeMessageBox("Подтверждение", $"Удалить объект '{deletedName}'?", 4);
+                int result = BoxMessage.ShowNativeMessageBox("Подтверждение", $"Удалить объект '{deletedName}'?", 4);
                 if (result == 6)
                 {
                     shopsList.RemoveAt(indexToDelete);
@@ -434,12 +411,12 @@ namespace LABA_1
                     InternetShop.CountObject--;
                     UpdateObjectCount();
                     UpdateObjectsList();
-                    ShowNativeMessageBox("Успех", "Объект удален", 0x40);
+                    BoxMessage.ShowNativeMessageBox("Успех", "Объект удален", 0x40);
                 }
             }
             else
             {
-                ShowNativeMessageBox("Ошибка", "Выберите объект для удаления!", 16);
+                BoxMessage.ShowNativeMessageBox("Ошибка", "Выберите объект для удаления!", 16);
             }
         }
 
@@ -464,7 +441,7 @@ namespace LABA_1
             }
             catch (MyDivideByZeroException ex)
             {
-                ShowNativeMessageBox($"{ex.Message}", $"{ex.AdditionalInfo}", 0x00000010);
+                BoxMessage.ShowNativeMessageBox($"{ex.Message}", $"{ex.AdditionalInfo}", 0x00000010);
             }
         }
 
