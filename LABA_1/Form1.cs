@@ -1,21 +1,13 @@
+using System.Net;
 using System.Runtime.InteropServices;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
+using System.Xml.Linq;
 
 namespace LABA_1
 {
     public partial class Form1 : Form
     {
-        /// <summary>
-        /// Регулярное выражение для проверки на корректность ввода имени
-        /// </summary>
-        private string pattern1 = @"^(?!\d+$)(?!.*\s{2})[A-Za-zА-Яа-яЁё0-9&""' -]{2,15}$";
-
-        /// <summary>
-        /// Регулярное выражение для проверки на корректность ввода адреса
-        /// </summary>
-        private string pattern2 = @"^(?!\d+$)(?!.*\s{2})[A-Za-zА-Яа-яЁё0-9&""'., -]{2,40}$";
-
         /// <summary>
         /// Текущий активный объект интернет-магазина
         /// </summary>
@@ -72,7 +64,7 @@ namespace LABA_1
                 else if (string.IsNullOrEmpty(address) && purchases == 0 &&
                          products == 0 && avgCheck == 0 && rating == 0 && active == -1)
                 {
-                    if (!Regex.IsMatch(name, pattern1))
+                    if (!InputChecker.IsValidShopName(name))
                     {
                         BoxMessage.ShowNativeMessageBox("Ошибка", "Имя магазина некорректно", 16);
                         return;
@@ -82,12 +74,12 @@ namespace LABA_1
                 }
                 else if (purchases == 0 && products == 0 && avgCheck == 0 && rating == 0 && active == -1)
                 {
-                    if (!Regex.IsMatch(name, pattern1))
+                    if (!InputChecker.IsValidShopName(name))
                     {
                         BoxMessage.ShowNativeMessageBox("Ошибка", "Имя магазина некорректно", 16);
                         return;
                     }
-                    if (!Regex.IsMatch(address, pattern2))
+                    if (!InputChecker.IsValidAddress(address))
                     {
                         BoxMessage.ShowNativeMessageBox("Ошибка", "Адрес магазина некорректен", 16);
                         return;
@@ -97,12 +89,12 @@ namespace LABA_1
                 }
                 else
                 {
-                    if (!Regex.IsMatch(name, pattern1))
+                    if (!InputChecker.IsValidShopName(name))
                     {
                         BoxMessage.ShowNativeMessageBox("Ошибка", "Имя магазина некорректно", 16);
                         return;
                     }
-                    if (!Regex.IsMatch(address, pattern2))
+                    if (!InputChecker.IsValidAddress(address))
                     {
                         BoxMessage.ShowNativeMessageBox("Ошибка", "Адрес магазина некорректен", 16);
                         return;
@@ -268,7 +260,7 @@ namespace LABA_1
         {
             if (currentShop == null)
             {
-                BoxMessage.ShowNativeMessageBox("Ошибка", "Сначала создайте объект! Поле не определено", 16);
+                BoxMessage.ShowNativeMessageBox("Ошибка", "Сначала создайте объект!", 16);
                 return;
             }
             string selectedField = objectFields.SelectedItem as string;
@@ -278,84 +270,92 @@ namespace LABA_1
                 return;
             }
             string newValue = newFieldValue.Text.Trim();
-            if (newValue == "")
+            if (string.IsNullOrEmpty(newValue))
             {
                 BoxMessage.ShowNativeMessageBox("Ошибка", "Значение не может быть пустым", 16);
                 return;
             }
+            bool success = true;
             switch (selectedField)
             {
                 case "name":
-                    if (!Regex.IsMatch(newValue, pattern1))
+                    if (InputChecker.IsValidShopName(newValue))
                     {
-                        BoxMessage.ShowNativeMessageBox("Ошибка", "Имя магазина некорректно", 16);
-                        return;
-                    }
-                    currentShop.Name = newValue;
-                    break;
-                case "address":
-                    if (!Regex.IsMatch(newValue, pattern2))
-                    {
-                        BoxMessage.ShowNativeMessageBox("Ошибка", "Адрес некорректен", 16);
-                        return;
-                    }
-                    currentShop.Address = newValue;
-                    break;
-                case "purchaseCount":
-                    if (!int.TryParse(newValue, out int purchaseCount) || purchaseCount < 0)
-                    {
-                        BoxMessage.ShowNativeMessageBox("Ошибка", "Количество покупок должно быть целым неотрицательным числом", 16);
-                        return;
-                    }
-                    currentShop.PurchaseCount = int.Parse(newValue);
-                    break;
-                case "productCount":
-                    if (!int.TryParse(newValue, out int productCount) || productCount < 0)
-                    {
-                        BoxMessage.ShowNativeMessageBox("Ошибка", "Количество товаров должно быть целым неотрицательным числом", 16);
-                        return;
-                    }
-                    currentShop.ProductCount = int.Parse(newValue);
-                    break;
-                case "averageCheck":
-                    if (!double.TryParse(newValue, out double averageCheck) || averageCheck < 0)
-                    {
-                        BoxMessage.ShowNativeMessageBox("Ошибка", "Средний чек должен быть неотрицательным числом", 16);
-                        return;
-                    }
-                    currentShop.AverageCheck = double.Parse(newValue);
-                    break;
-                case "rating":
-                    if (!double.TryParse(newValue, out double rating) || rating < 1 || rating > 5)
-                    {
-                        BoxMessage.ShowNativeMessageBox("Ошибка", "Рейтинг должен быть числом от 1 до 5", 16);
-                        return;
-                    }
-                    currentShop.Rating = double.Parse(newValue);
-                    break;
-                case "isActive":
-                    if (!newValue.Equals("да", StringComparison.OrdinalIgnoreCase) &&
-                        !newValue.Equals("нет", StringComparison.OrdinalIgnoreCase) &&
-                        !newValue.Equals("true", StringComparison.OrdinalIgnoreCase) &&
-                        !newValue.Equals("false", StringComparison.OrdinalIgnoreCase))
-                    {
-                        BoxMessage.ShowNativeMessageBox("Ошибка", "Значение может быть \"да/нет\" или \"true/false\"", 16);
-                        return;
-                    }
-                    if (newValue.Equals("да", StringComparison.OrdinalIgnoreCase) ||
-                        newValue.Equals("true", StringComparison.OrdinalIgnoreCase))
-                    {
-                        currentShop.IsActive = true;
+                        currentShop.Name = newValue;
                     }
                     else
                     {
-                        currentShop.IsActive = false;
+                        success = false;
                     }
                     break;
-
-                default:
-                    txtDisplayInfo.Text = "Выберите поле для изменения";
+                case "address":
+                    if (InputChecker.IsValidAddress(newValue))
+                    {
+                        currentShop.Address = newValue;
+                    }
+                    else
+                    {
+                        success = false;
+                    }
                     break;
+                case "purchaseCount":
+                    if (InputChecker.TryParseNonNegativeInt(newValue, out int purchaseCount))
+                    {
+                        currentShop.PurchaseCount = purchaseCount;
+                    }
+                    else
+                    {
+                        success = false;
+                    }
+                    break;
+                case "productCount":
+                    if (InputChecker.TryParseNonNegativeInt(newValue, out int productCount))
+                    {
+                        currentShop.ProductCount = productCount;
+                    }
+                    else
+                    {
+                        success = false;
+                    }
+                    break;
+                case "averageCheck":
+                    if (InputChecker.TryParseNonNegativeDouble(newValue, out double avgCheck))
+                    {
+                        currentShop.AverageCheck = avgCheck;
+                    }
+                    else
+                    {
+                        success = false;
+                    }
+                    break;
+                case "rating":
+                    if (InputChecker.TryParseRating(newValue, out double rating))
+                    {
+                        currentShop.Rating = rating;
+                    }
+                    else
+                    {
+                        success = false;
+                    }     
+                    break;
+                case "isActive":
+                    if (InputChecker.TryParseBoolean(newValue, out bool isActive))
+                    {
+                        currentShop.IsActive = isActive;
+                    }
+                    else
+                    {
+                        success = false;
+                    }
+                    break;
+                default:
+                    BoxMessage.ShowNativeMessageBox("Ошибка", "Выберите поле для изменения", 16);
+                    return;
+            }
+            if (!success)
+            {
+                BoxMessage.ShowNativeMessageBox("Ошибка", $"Некорректное значение для поля {selectedField}", 16);
+                return;
             }
             DisplayCurrentShopInfo();
             UpdateObjectsList();
