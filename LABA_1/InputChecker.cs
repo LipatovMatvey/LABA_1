@@ -44,11 +44,11 @@ namespace LABA_1
         }
 
         /// <summary>
-        /// 
+        /// Пытается преобразовать строковое представление числа в целое неотрицательное значение
         /// </summary>
-        /// <param name="value"></param>
-        /// <param name="result"></param>
-        /// <returns></returns>
+        /// <param name="value">Строковое представление числа для парсинга</param>
+        /// <param name="result">При успешном преобразовании содержит целое неотрицательное число</param>
+        /// <returns>true, если value успешно преобразовано в неотрицательное целое число; иначе false</returns>
         public static bool TryParseNonNegativeInt(string value, out int result)
         {
             result = 0;
@@ -56,11 +56,11 @@ namespace LABA_1
         }
 
         /// <summary>
-        /// 
+        /// Пытается преобразовать строковое представление числа в неотрицательное число с плавающей запятой двойной точности
         /// </summary>
-        /// <param name="value"></param>
-        /// <param name="result"></param>
-        /// <returns></returns>
+        /// <param name="value">Строковое представление числа для парсинга</param>
+        /// <param name="result">При успешном преобразовании содержит неотрицательное число double</param>
+        /// <returns>true, если value успешно преобразовано в неотрицательное число double; иначе false</returns>
         public static bool TryParseNonNegativeDouble(string value, out double result)
         {
             result = 0;
@@ -68,11 +68,11 @@ namespace LABA_1
         }
 
         /// <summary>
-        /// 
+        /// Пытается преобразовать строковое представление числа в значение рейтинга от 1 до 5
         /// </summary>
-        /// <param name="value"></param>
-        /// <param name="result"></param>
-        /// <returns></returns>
+        /// <param name="value">Строковое представление рейтинга для парсинга</param>
+        /// <param name="result">При успешном преобразовании содержит число double в диапазоне от 1 до 5</param>
+        /// <returns>true, если value успешно преобразовано в число в диапазоне [1, 5]; иначе false</returns>
         public static bool TryParseRating(string value, out double result)
         {
             result = 0;
@@ -80,11 +80,13 @@ namespace LABA_1
         }
 
         /// <summary>
-        /// 
+        /// Пытается преобразовать строковое представление логического значения
         /// </summary>
-        /// <param name="value"></param>
-        /// <param name="result"></param>
-        /// <returns></returns>
+        /// <param name="value">Строковое представление логического значения для парсинга</param>
+        /// <param name="result">
+        /// При успешном преобразовании содержит true для значений "да" или "true"; false для значений "нет" или "false"
+        /// </param>
+        /// <returns>true, если value успешно преобразовано в логическое значение; иначе false</returns>
         public static bool TryParseBoolean(string value, out bool result)
         {
             result = false;

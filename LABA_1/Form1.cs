@@ -459,6 +459,8 @@ namespace LABA_1
             numericUpDown3.Value = 0.00m;
             numericUpDown4.Value = 0.0m;
             comboBox1.SelectedIndex = -1;
+            newFieldValue.Text = "";
+            objectFields.SelectedIndex = -1;
         }
     }
 }
