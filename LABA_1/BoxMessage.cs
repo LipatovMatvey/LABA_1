@@ -5,7 +5,7 @@ using System.Text;
 
 namespace LABA_1
 {
-    internal class BoxMessage
+    internal abstract class BoxMessage
     {
         /// <summary>
         /// Импорт функции MessageBox из библиотеки user32.dll
@@ -17,7 +17,6 @@ namespace LABA_1
         /// <returns></returns>
         [DllImport("user32.dll", CharSet = CharSet.Auto)]
         private static extern int MessageBox(IntPtr hWnd, string text, string caption, uint type);
-
 
         /// <summary>
         /// Обертка для вызова нативного MessageBox
