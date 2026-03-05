@@ -69,15 +69,15 @@ namespace MainModuleTest
         [TestMethod]
         public void ObjectsCount_IncrementsOnEachNewInstance() 
         {
-            int beforeCreate = InternetShop.ObjectsCount;
+            int beforeCreate = InternetShop.CountObject;
             var shop1 = new InternetShop();
-            Assert.AreEqual(beforeCreate + 1, InternetShop.ObjectsCount);
+            Assert.AreEqual(beforeCreate + 1, InternetShop.CountObject);
 
             var shop2 = new InternetShop("Name");
-            Assert.AreEqual(beforeCreate + 2, InternetShop.ObjectsCount);
+            Assert.AreEqual(beforeCreate + 2, InternetShop.CountObject);
 
             var shop3 = new InternetShop("Name", "Addr");
-            Assert.AreEqual(beforeCreate + 3, InternetShop.ObjectsCount);
+            Assert.AreEqual(beforeCreate + 3, InternetShop.CountObject);
         }
 
         /// <summary>

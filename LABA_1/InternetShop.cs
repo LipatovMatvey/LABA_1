@@ -112,11 +112,6 @@ namespace LABA_1
         public static int CountObject = 0;
 
         /// <summary>
-        /// Счетчик созданных объектов
-        /// </summary>
-        public static int ObjectsCount { get; set; }
-
-        /// <summary>
         /// Конструктор по умолчанию
         /// </summary>
         public InternetShop()
